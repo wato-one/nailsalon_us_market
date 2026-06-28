@@ -1,0 +1,26 @@
+# Trusted local sources — highest priority in research synthesis.
+# The 99 project folder and synced Google Drive exports are canonical.
+
+priority: trusted
+
+sources:
+  - id: drive-research-folder
+    label: Google Drive — Nail Salon Research
+    env_var: DRIVE_SOURCE_DIR
+    description: Statista exports and reference files synced from Drive
+    file_patterns:
+      - "*.csv"
+      - "*.xlsx"
+      - "*.pdf"
+      - "*.md"
+
+  - id: project-data-folder
+    label: Project data/
+    path: data
+    description: Curated reference files you add directly to this repo
+    file_patterns:
+      - "*.csv"
+      - "*.xlsx"
+      - "*.pdf"
+      - "*.md"
+      - "*.json"

@@ -1,0 +1,57 @@
+# Web sources for US nail salon market research (beyond Statista).
+# Scraped content is supplementary — local/Drive sources take precedence.
+
+priority: supplementary
+
+categories:
+  market_sizing:
+    - id: gmi-nail-salon
+      label: GMI Insights
+      title: Nail Salon Market Size, Share & Growth Forecasts
+      url: https://www.gminsights.com/industry-analysis/nail-salon-market
+      tier: primary
+
+    - id: blvd-salon-stats
+      label: Boulevard
+      title: Salon Trends & Industry Statistics
+      url: https://www.joinblvd.com/blog/salon-trends-industry-statistics
+      tier: primary
+
+  labor_economics:
+    - id: bls-cosmetologists
+      label: BLS
+      title: Barbers, Hairstylists, and Cosmetologists — Occupational Outlook
+      url: https://www.bls.gov/ooh/personal-care-and-service/barbers-hairstylists-and-cosmetologists.htm
+      tier: primary
+
+    - id: bls-manicurists
+      label: BLS
+      title: Manicurists and Pedicurists — Occupational Outlook
+      url: https://www.bls.gov/ooh/personal-care-and-service/manicurists-and-pedicurists.htm
+      tier: primary
+
+  consumer_behavior:
+    - id: brightlocal-reviews
+      label: BrightLocal
+      title: Local Consumer Review Survey
+      url: https://www.brightlocal.com/research/local-consumer-review-survey-2024/
+      tier: secondary
+
+    - id: salon-today-retention
+      label: Salon Today
+      title: Boulevard Report — First-time visitor retention
+      url: https://www.salontoday.com/1088748/boulevard-report-reveals-top-performing-salons-retain-56-more-first-time-visitor
+      tier: secondary
+
+  industry_trends:
+    - id: nails-magazine
+      label: NAILS Magazine
+      title: Industry news and trends
+      url: https://www.nailsmag.com/
+      tier: secondary
+
+    - id: pba-industry
+      label: Professional Beauty Association
+      title: Industry resources
+      url: https://www.probeauty.org/
+      tier: secondary

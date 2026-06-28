@@ -1,0 +1,41 @@
+# Environment and secrets
+.env
+credentials.json
+token.json
+*.pem
+*.key
+
+# Python virtual environment
+.venv/
+
+# Temporary and intermediate files
+.tmp/
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+._*
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
