@@ -45,7 +45,9 @@ npm run dev          # http://localhost:3000
 npm run build
 ```
 
-**Vercel:** set Root Directory to `report` when linking the GitHub repo.
+**Vercel:** Root Directory = `report` on project [nailsalon-us-market-report](https://vercel.com/phong-nguyens-projects-5445c0d4/nailsalon-us-market-report). Pushes to `main` that touch `report/` auto-deploy via GitHub Actions.
+
+**Private access (Hobby plan):** Standard Protection is enabled for preview/deployment URLs. Production alias `*.vercel.app` may remain public on Hobby — use deployment Share to invite viewers, or upgrade to Pro to lock production domains.
 
 ## Directory Layout
 

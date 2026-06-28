@@ -10,9 +10,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: report
     steps:
       - uses: actions/checkout@v4
 
@@ -23,6 +20,7 @@ jobs:
           cache-dependency-path: report/package-lock.json
 
       - name: Install dependencies
+        working-directory: report
         run: npm ci
 
       - name: Deploy to Vercel Production
