@@ -4,3 +4,4 @@ out/
 .env*
 .firecrawl/
 .DS_Store
+.vercel

@@ -44,3 +44,6 @@ build/
 report/node_modules/
 report/.next/
 report/out/
+
+# Vercel local link (use GitHub Actions or `vercel deploy` from repo root)
+.vercel/

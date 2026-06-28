@@ -45,7 +45,13 @@ npm run dev          # http://localhost:3000
 npm run build
 ```
 
-**Vercel:** Root Directory = `report` on project [nailsalon-us-market-report](https://vercel.com/phong-nguyens-projects-5445c0d4/nailsalon-us-market-report). Pushes to `main` that touch `report/` auto-deploy via GitHub Actions.
+**Vercel:** Single project `nailsalon-us-market-report` with Root Directory = `report`. Deploys via GitHub Actions on push to `main` — do not run `vercel link` inside `report/` (causes duplicate path).
+
+**Local manual deploy (optional):** from repo root, not `report/`:
+```bash
+vercel link   # once, creates .vercel at repo root
+vercel deploy --prod
+```
 
 **Private access (Hobby plan):** Standard Protection is enabled for preview/deployment URLs. Production alias `*.vercel.app` may remain public on Hobby — use deployment Share to invite viewers, or upgrade to Pro to lock production domains.
 
