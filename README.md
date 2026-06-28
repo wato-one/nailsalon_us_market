@@ -34,12 +34,26 @@ python run_research.py                     # full research pipeline
 | 00 | `workflows/00_setup_authentication.md` | Google OAuth for Sheets, Slides, Drive |
 | 01 | `workflows/01_market_research_synthesis.md` | Combine trusted local + web research |
 
+## Interactive Report (Vietnamese)
+
+Single-page Next.js industry report in `report/` — PESTEL, Porter, competitors, consumer, journey, strategy.
+
+```bash
+cd report
+npm install
+npm run dev          # http://localhost:3000
+npm run build
+```
+
+**Vercel:** set Root Directory to `report` when linking the GitHub repo.
+
 ## Directory Layout
 
 ```
 99.Nail Salon Market/
 ├── CLAUDE.md
 ├── README.md
+├── report/                 # Next.js interactive report (Vietnamese, Wato branding)
 ├── run_research.py         # Run full pipeline
 ├── config/
 │   ├── local_sources.yaml  # Trusted: Drive + data/

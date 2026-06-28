@@ -39,3 +39,8 @@ logs/
 dist/
 build/
 *.egg-info/
+
+# Next.js interactive report
+report/node_modules/
+report/.next/
+report/out/
