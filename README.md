@@ -45,11 +45,13 @@ npm run dev          # http://localhost:3000
 npm run build
 ```
 
-**Vercel:** Single project `nailsalon-us-market-report` with Root Directory = `report`. Deploys via GitHub Actions on push to `main` — do not run `vercel link` inside `report/` (causes duplicate path).
+**Vercel:** Single project [`nailsalon-us-market`](https://vercel.com/wato-one-research/nailsalon-us-market) on team **wato-one-research** — Root Directory = `report`, auto-deploy on push to `main` via GitHub integration.
 
-**Local manual deploy (optional):** from repo root, not `report/`:
+**Production URL:** https://nailsalon-us-market.vercel.app
+
+**Local manual deploy (optional):** from repo root:
 ```bash
-vercel link   # once, creates .vercel at repo root
+vercel link   # once — links to wato-one-research/nailsalon-us-market
 vercel deploy --prod
 ```
 
