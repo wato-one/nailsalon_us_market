@@ -10,6 +10,11 @@ export const masterGlossary = [
     def: "Phần mềm lưu hồ sơ khách, lịch sử dịch vụ, nhắc lịch fill và chiến dịch marketing. Salon Mỹ dùng CRM gắn POS để tăng retention — khách online quay lại ~78% vs ~39% walk-in (Boulevard).",
   },
   {
+    term: "Demographic",
+    en: "Demographics",
+    def: "Đặc điểm dân số học khách nail Mỹ: tuổi, giới, vùng (South 73% penetration cao nhất), sắc tộc (Black 87% trong nhóm), chi tiêu sản phẩm. Nguồn: Statista n=1.092 (2023).",
+  },
+  {
     term: "Foot traffic",
     en: "Foot traffic",
     def: "Lượng khách tự nhiên nhờ vị trí — mô hình Regal Nails trong Walmart tận dụng foot traffic retail thay vì marketing digital mạnh.",
@@ -55,6 +60,11 @@ export const masterGlossary = [
     def: "Trong báo cáo này: Google/Yelp là nguồn discovery chính; 71% khách bỏ qua salon dưới 3★ (BrightLocal 2024).",
   },
   {
+    term: "Penetration",
+    en: "Market penetration",
+    def: "Tỷ lệ người trong một nhóm demographic (tuổi, vùng, sắc tộc) cũng dùng sản phẩm nail — proxy nhu cầu salon. Ví dụ: Gen Z 71%, South 73% (Statista 2023).",
+  },
+  {
     term: "OSHA",
     en: "Occupational Safety and Health Administration",
     def: "Cơ quan an toàn lao động liên bang — giám sát hóa chất, thông gió và bảo vệ sức khỏe thợ nail; liên quan báo cáo WVE về độc tố sản phẩm.",
@@ -63,6 +73,11 @@ export const masterGlossary = [
     term: "Pre-book",
     en: "Pre-booking",
     def: "Đặt lịch lần tiếp theo ngay sau dịch vụ tại quầy — đòn bẩy fill rate và retention, đặc biệt chuyển walk-in sang lịch cố định.",
+  },
+  {
+    term: "Psychographic",
+    en: "Psychographics",
+    def: "Động cơ và giá trị khách: self-care (67% dùng nail), ưu tiên bền+giá (42%/41%), nail art, vệ sinh post-COVID, cruelty-free (16%). Quyết định positioning salon.",
   },
   {
     term: "Race-to-bottom",

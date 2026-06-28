@@ -27,10 +27,25 @@ export const sectionIntros = {
   pestel: "Yếu tố vĩ mô ảnh hưởng toàn ngành nail salon tại Hoa Kỳ.",
   porter: "Năm lực lượng cạnh tranh trong ngành nail salon Mỹ.",
   competitors: "Chuỗi quốc gia, franchise và phân khúc salon độc lập chiếm đa số thị trường.",
-  consumer: "Phân khúc người tiêu dùng và nguồn thông tin khi chọn salon.",
+  consumer:
+    "Chân dung người tiêu dùng Mỹ: demographic, psychographic, hành vi media và phân khúc salon — tổng hợp Statista (n=1.092), GMI, BrightLocal và Boulevard.",
   journey: "Từ kích hoạt nhu cầu đến tái mua dịch vụ nail trên toàn quốc.",
   strategy: "Đề xuất chiến lược cho nhà đầu tư, chuỗi và salon độc lập tại Mỹ.",
   valueChain: "Chuỗi giá trị ngành nail tại Hoa Kỳ",
+};
+
+export const consumerLabels = {
+  demographicsTitle: "Demographic — Chân dung dân số học",
+  demographicsIntro:
+    "Khảo sát Statista Consumer Insights (Mỹ, 07/2023, n=1.092). Tỷ lệ % là người trả lời trong từng nhóm demographic cũng dùng sản phẩm nail (proxy cho nhu cầu dịch vụ salon).",
+  psychographicsTitle: "Psychographic — Động cơ & giá trị",
+  psychographicsIntro:
+    "Suy luận từ tiêu chí mua hàng, chi tiêu và xu hướng ngành — phản ánh kỳ vọng khi chọn salon, không chỉ sản phẩm retail.",
+  mediaTitle: "Hành vi media & discovery",
+  mediaIntro:
+    "Kênh tìm kiếm, đánh giá và đặt lịch — ảnh hưởng trực tiếp marketing salon tại Mỹ.",
+  segmentsTitle: "Phân khúc khách salon",
+  infoSourcesTitle: "Nguồn thông tin khi chọn salon",
 };
 
 export const valueChain = [
@@ -333,6 +348,276 @@ export const competitorData = [
   },
 ];
 
+export const consumerDemographics = [
+  {
+    category: "Quy mô mẫu",
+    metric: "n = 1.092",
+    value: "Toàn quốc Mỹ",
+    detail: "Statista Beauty & Cosmetics US 2023 — cơ sở cho các breakdown bên dưới.",
+    sourceIds: ["statista-consumer-csv-2023"],
+  },
+  {
+    category: "Penetration",
+    metric: "67%",
+    value: "Dùng nail polish / sản phẩm nail",
+    detail: "732/1.092 người trả lời; 33% non-user — nhu cầu dịch vụ salon đã phổ biến nhưng chưa universal.",
+    sourceIds: ["statista-consumer-csv-2023"],
+  },
+  {
+    category: "Giới tính",
+    metric: "Nữ chiếm đa số",
+    value: "Khách salon & thợ",
+    detail: "Khảo sát sản phẩm thiên nữ; ngành dịch vụ salon Mỹ ước tính ~90%+ khách nữ (NAILS/IBISWorld). UCLA: 81% lao động nữ tại CA.",
+    sourceIds: ["statista-consumer-csv-2023", "statista-nail-salons-us", "ucla-nail-files-2024"],
+  },
+  {
+    category: "Tuổi — Gen Z",
+    metric: "71%",
+    value: "Dùng sản phẩm nail trong nhóm",
+    detail: "220/311 người Gen Z (1995–2012) — nhóm adoption cao nhất theo thế hệ.",
+    sourceIds: ["statista-consumer-csv-2023"],
+  },
+  {
+    category: "Tuổi — Millennials",
+    metric: "70%",
+    value: "Dùng sản phẩm nail",
+    detail: "115/165 — lõi doanh thu mid-range salon; thói quen maintenance 2–4 tuần.",
+    sourceIds: ["statista-consumer-csv-2023", "gmi-nail-salon-2025"],
+  },
+  {
+    category: "Tuổi — Gen X",
+    metric: "67%",
+    value: "Dùng sản phẩm nail",
+    detail: "271/405 — chi tiêu ổn định, ưu tiên độ bền và giá.",
+    sourceIds: ["statista-consumer-csv-2023"],
+  },
+  {
+    category: "Tuổi — Baby Boomer",
+    metric: "59%",
+    value: "Dùng sản phẩm nail",
+    detail: "117/199 — thấp hơn Gen trẻ nhưng pedicure/spa premium vẫn quan trọng.",
+    sourceIds: ["statista-consumer-csv-2023"],
+  },
+  {
+    category: "Nhóm tuổi 16–29",
+    metric: "76%",
+    value: "Penetration cao",
+    detail: "205/268 — nail art, gel, social sharing; driver tăng trưởng GMI.",
+    sourceIds: ["statista-consumer-csv-2023", "gmi-nail-salon-2025"],
+  },
+  {
+    category: "Khu vực — South",
+    metric: "73%",
+    value: "Penetration cao nhất",
+    detail: "289/396 người trả lời tại South — mật độ salon và thói quen self-care mạnh.",
+    sourceIds: ["statista-consumer-csv-2023"],
+  },
+  {
+    category: "Khu vực — Northeast",
+    metric: "69%",
+    value: "Penetration",
+    detail: "141/203 — đô thị dày, cạnh tranh giá và review gay gắt.",
+    sourceIds: ["statista-consumer-csv-2023"],
+  },
+  {
+    category: "Khu vực — West",
+    metric: "62%",
+    value: "Penetration",
+    detail: "150/242 — CA chiếm phần lớn salon nail nước; lao động Việt Nam đông (UCLA).",
+    sourceIds: ["statista-consumer-csv-2023", "ucla-nail-files-2024"],
+  },
+  {
+    category: "Khu vực — Midwest",
+    metric: "61%",
+    value: "Penetration",
+    detail: "152/251 — thấp nhất vùng; cơ hội mở rộng chuỗi/suburb.",
+    sourceIds: ["statista-consumer-csv-2023"],
+  },
+  {
+    category: "Sắc tộc — Black",
+    metric: "87%",
+    value: "Dùng sản phẩm nail trong nhóm",
+    detail: "103/118 — adoption rất cao; nail art & design culture mạnh.",
+    sourceIds: ["statista-consumer-csv-2023"],
+  },
+  {
+    category: "Sắc tộc — Asian",
+    metric: "71%",
+    value: "Penetration",
+    detail: "30/42 — liên quan cộng đồng salon và thói quen chăm sóc móng.",
+    sourceIds: ["statista-consumer-csv-2023", "ucla-nail-files-2024"],
+  },
+  {
+    category: "Sắc tộc — White",
+    metric: "63%",
+    value: "Penetration",
+    detail: "528/842 — nhóm đông nhất về quy mô tuyệt đối.",
+    sourceIds: ["statista-consumer-csv-2023"],
+  },
+  {
+    category: "Hôn nhân — Độc thân",
+    metric: "71%",
+    value: "Dùng sản phẩm nail",
+    detail: "96/135 — self-care & sự kiện xã hội là trigger chính.",
+    sourceIds: ["statista-consumer-csv-2023"],
+  },
+  {
+    category: "Hôn nhân — Đã kết hôn",
+    metric: "67%",
+    value: "Penetration",
+    detail: "620/931 — khách maintenance định kỳ, gia đình cuối tuần.",
+    sourceIds: ["statista-consumer-csv-2023"],
+  },
+  {
+    category: "Chi tiêu sản phẩm/năm",
+    metric: "29%",
+    value: "≤ USD 30",
+    detail: "321/1.092 — nhạy giá; salon entry manicure ~USD 22,75 (2019) tương thích.",
+    sourceIds: ["statista-consumer-csv-2023", "statista-nail-salons-us"],
+  },
+  {
+    category: "Chi tiêu sản phẩm/năm",
+    metric: "17%",
+    value: "USD 31–60",
+    detail: "190/1.092 — sẵn sàng trả premium cho gel/art.",
+    sourceIds: ["statista-consumer-csv-2023"],
+  },
+  {
+    category: "Sản phẩm — Artificial nails",
+    metric: "26%",
+    value: "Người dùng",
+    detail: "282/1.092 — proxy nhu cầu gel/acrylic tại salon, không DIY.",
+    sourceIds: ["statista-consumer-csv-2023"],
+  },
+];
+
+export const consumerPsychographics = [
+  {
+    headline: "Self-care đã chuẩn hóa — không còn xa xỉ",
+    detail:
+      "67% người Mỹ dùng sản phẩm nail; GMI ghi nhận chi tiêu làm đẹt ít bị cắt mạnh trong suy thoái ngắn. Manicure/pedicure là ritual định kỳ, đặc biệt phụ nữ 25–55.",
+    impact: "opportunity",
+    sourceIds: ["statista-consumer-csv-2023", "gmi-nail-salon-2025"],
+  },
+  {
+    headline: "Độ bền + giá — tiêu chí mua hàng đầu",
+    detail:
+      "42% ưu tiên 'long lasting', 41% giá, 38% đa dạng màu (Statista). Kỳ vọng tương tự với dịch vụ salon: gel bền, giá minh bạch, menu tier rõ.",
+    impact: "insight",
+    sourceIds: ["statista-consumer-csv-2023"],
+  },
+  {
+    headline: "Thẩm mỹ & biểu đạt bản thân qua nail art",
+    detail:
+      "21% ưu tiên thiết kế đẹp; 26% dùng artificial nails. Gen Z/Millennials chia sẻ look trên social — salon là 'canvas' thể hiện cá tính.",
+    impact: "opportunity",
+    sourceIds: ["statista-consumer-csv-2023", "gmi-nail-salon-2025", "nails-magazine-industry"],
+  },
+  {
+    headline: "Vệ sinh & an toàn — kỳ vọng sau COVID",
+    detail:
+      "Review salon nhấn mạnh sạch sẽ, footspa log, mùi hóa chất. WVE và BBC tăng nhận thức hóa chất — khách sẵn sàng trả premium cho 'clean nails'.",
+    impact: "critical",
+    sourceIds: ["wve-exposed-report", "ca-bbc-art12", "brightlocal-reviews-2024"],
+  },
+  {
+    headline: "Đạo đức & sản phẩm 'sạch' — phân khúc đang nổi",
+    detail:
+      "16% ưu tiên cruelty-free, 7% sustainability, 5% vegan (Statista). Psychographic 'conscious consumer' — salon storytelling sản phẩm ít độc tố.",
+    impact: "opportunity",
+    sourceIds: ["statista-consumer-csv-2023", "gmi-nail-salon-2025"],
+  },
+  {
+    headline: "Tiện lợi vs trải nghiệm — polarized",
+    detail:
+      "Một nhóm ưu tiên walk-in/Walmart/Regal (giá, gần); nhóm khác trả USD 60–120+ cho spa premium. Mid-range GMI là 'sweet spot' đa số.",
+    impact: "insight",
+    sourceIds: ["gmi-nail-salon-2025", "regal-nails"],
+  },
+  {
+    headline: "Cộng đồng & word-of-mouth",
+    detail:
+      "Giới thiệu bạn bè/đồng nghiệp mạnh trong cộng đồng nhập cư (UCLA). Psychographic 'trust network' — salon phụ thuộc reputation cộng đồng địa phương.",
+    impact: "high",
+    sourceIds: ["ucla-nail-files-2024"],
+  },
+];
+
+export const consumerMediaBehavior = [
+  {
+    platform: "Google Search / Maps",
+    role: "Discovery #1",
+    behavior: "'Nails near me', filter rating & khoảng cách",
+    detail: "71% không cân nhắc doanh nghiệp <3★. Google Business Profile là kênh bắt buộc.",
+    importance: 5,
+    sourceIds: ["brightlocal-reviews-2024"],
+  },
+  {
+    platform: "Yelp",
+    role: "Xác minh chất lượng",
+    behavior: "Đọc review chi tiết, xem ảnh thực tế, so giá khu vực",
+    detail: "Đặc biệt mạnh tại đô thị; ảnh pedicure station & vệ sinh quyết định.",
+    importance: 4,
+    sourceIds: ["brightlocal-reviews-2024"],
+  },
+  {
+    platform: "TikTok",
+    role: "Inspiration & trend",
+    behavior: "Nail art viral, ASMR salon, before/after",
+    detail: "Gen Z/Millennials discovery thiết kế trước khi book; salon cần clip ngắn portfolio thợ.",
+    importance: 4,
+    sourceIds: ["gmi-nail-salon-2025", "nails-magazine-industry"],
+  },
+  {
+    platform: "Instagram",
+    role: "Portfolio & brand",
+    behavior: "Feed thiết kế, Stories check-in, Reels",
+    detail: "Mid/premium salon showcase; hashtag địa phương + tag thợ.",
+    importance: 4,
+    sourceIds: ["gmi-nail-salon-2025"],
+  },
+  {
+    platform: "Giới thiệu trực tiếp",
+    role: "Trust cao",
+    behavior: "Bạn bè, gia đình, đồng nghiệp, cộng đồng ngôn ngữ",
+    detail: "Mạnh trong cộng đồng Á/Việt; bổ sung cho review online.",
+    importance: 4,
+    sourceIds: ["ucla-nail-files-2024"],
+  },
+  {
+    platform: "Website / app đặt lịch",
+    role: "Conversion",
+    behavior: "~46–50% booking ngoài giờ mở cửa",
+    detail: "Boulevard/Mindbody/NailSoft; khách online retention ~78% vs walk-in ~39%.",
+    importance: 4,
+    sourceIds: ["blvd-salon-stats-2025", "salon-today-retention"],
+  },
+  {
+    platform: "Facebook",
+    role: "Local community",
+    behavior: "Group địa phương, event, voucher",
+    detail: "Phổ biến khách 35+ và salon độc lập suburb; ít viral hơn TikTok.",
+    importance: 3,
+    sourceIds: ["gmi-nail-salon-2025"],
+  },
+  {
+    platform: "Groupon / deal sites",
+    role: "Trial — retention thấp",
+    behavior: "Khách lần đầu giá rẻ",
+    detail: "Hiệu quả fill ghế trống nhưng cần CRM follow-up; không thay retention.",
+    importance: 2,
+    sourceIds: ["blvd-salon-stats-2025"],
+  },
+  {
+    platform: "SMS / email salon",
+    role: "Retention",
+    behavior: "Nhắc fill 2 tuần, birthday offer, review prompt",
+    detail: "Chuyển walk-in sang pre-book — đòn bẩy LTV lớn nhất.",
+    importance: 4,
+    sourceIds: ["salon-today-retention", "blvd-salon-stats-2025"],
+  },
+];
+
 export const segments = [
   {
     name: "Khách định kỳ — 'Maintenance'",
@@ -340,10 +625,14 @@ export const segments = [
     tagColor: "#C0001E",
     pct: "~45–55%",
     sizeMarket: "Phân khúc lớn nhất · GMI mid-range",
+    demographics: "Nữ 25–55 · Millennials/Gen X · Married 67% · South/Midwest suburb",
+    psychographics: "Self-care định kỳ, ưu tiên giá ổn định & thợ quen, ít thử salon mới",
+    media: "Google Maps, giới thiệu bạn bè, SMS nhắc lịch, Yelp xác minh",
     profile:
-      "Nữ 25–55 tuổi, manicure/pedicure 2–4 tuần/lần, ưu tiên giá ổn định và thợ quen.",
+      "Manicure/pedicure 2–4 tuần/lần; chi tiêu sản phẩm thường ≤USD 30/năm (29% mẫu Statista).",
     channel: "Google Maps, Yelp, giới thiệu bạn bè, đặt lịch quen",
     barrier: "Thời gian chờ, parking, lo vệ sinh pedicure",
+    sourceIds: ["gmi-nail-salon-2025", "statista-consumer-csv-2023"],
   },
   {
     name: "Khách trải nghiệm — Nail art & gel",
@@ -351,10 +640,14 @@ export const segments = [
     tagColor: "#1565C0",
     pct: "~20–25%",
     sizeMarket: "Gen Z / Millennials · social-driven",
+    demographics: "16–39 tuổi · Gen Z 71% penetration · urban/suburb · đa sắc tộc",
+    psychographics: "Biểu đạt cá tính, theo trend TikTok, sẵn sàng trả premium cho design",
+    media: "TikTok, Instagram Reels, portfolio thợ, influencer micro",
     profile:
-      "Tìm thiết kế gel, dipping, nail art; chia sẻ Instagram/TikTok; giá cao hơn manicure cơ bản.",
+      "Gel, dipping, nail art; 26% dùng artificial nails (Statista); chi tiêu USD 31–60+.",
     channel: "TikTok, Instagram, influencer, portfolio thợ",
     barrier: "Giá premium, thời gian làm lâu, chất lượng không đồng đều",
+    sourceIds: ["statista-consumer-csv-2023", "gmi-nail-salon-2025"],
   },
   {
     name: "Khách tiện lợi — Retail & walk-in",
@@ -362,10 +655,14 @@ export const segments = [
     tagColor: "#2E7D32",
     pct: "~15–20%",
     sizeMarket: "Salon-in-retail, strip mall",
+    demographics: "Đa tuổi · gia đình · Midwest/South · nhạy giá",
+    psychographics: "Cần nhanh, gần, giá entry; loyalty thấp, chấp nhận quality trade-off",
+    media: "Foot traffic Walmart/mall, Google rating nhanh, ít follow social",
     profile:
-      "Đi kèm mua sắm (Walmart, mall); ưu tiên gần, nhanh, giá entry; ít trung thành thương hiệu.",
+      "Đi kèm mua sắm; manicure cơ bản ~USD 22,75; walk-in cuối tuần.",
     channel: "Foot traffic, Regal trong Walmart, walk-in",
     barrier: "Chất lượng không ổn định, xếp hàng, review thấp",
+    sourceIds: ["regal-nails", "statista-nail-salons-us", "statista-consumer-csv-2023"],
   },
   {
     name: "Khách cao cấp — Spa & wellness",
@@ -373,10 +670,14 @@ export const segments = [
     tagColor: "#C9A535",
     pct: "~10–15%",
     sizeMarket: "Đô thị lớn · thu nhập cao",
+    demographics: "35+ · Boomer/Gen X · Northeast/West urban · White/Asian skew",
+    psychographics: "Clean beauty, spa experience, cruelty-free/vegan ưu tiên (16%/5%)",
+    media: "Spa website, hotel referral, membership email, Yelp premium reviews",
     profile:
-      "Pedicure spa, sản phẩm sạch, không gian cao cấp; sẵn sàng trả USD 60–120+.",
+      "Pedicure spa USD 60–120+; ưu tiên sản phẩm sạch, không gian yên tĩnh.",
     channel: "Spa brand, hotel, referral, membership",
     barrier: "Cạnh tranh med-spa và salon tóc full-service",
+    sourceIds: ["statista-consumer-csv-2023", "gmi-nail-salon-2025", "wve-exposed-report"],
   },
 ];
 
@@ -639,9 +940,9 @@ export const sectionHints = {
     { term: "Full-service spa", def: "Salon kết hợp nail + massage + facial — phân khúc premium." },
   ],
   consumer: [
-    { term: "Gen Z / Millennials", def: "Nhóm dẫn dắt nail art và discovery qua social media." },
-    { term: "Maintenance segment", def: "Khách manicure/pedicure định kỳ 2–4 tuần — lõi doanh thu." },
-    { term: "NPS discovery", def: "Google/Yelp là nguồn thông tin số 1 khi chọn salon mới." },
+    { term: "Demographic", def: "Đặc điểm dân số học: tuổi, giới, vùng, sắc tộc, thu nhập/chi tiêu." },
+    { term: "Psychographic", def: "Động cơ, giá trị, lifestyle — self-care, giá, vệ sinh, đạo đức." },
+    { term: "Penetration", def: "Tỷ lệ người trong nhóm demographic cũng dùng sản phẩm/dịch vụ nail." },
   ],
   journey: [
     { term: "Walk-in", def: "Khách không đặt trước — retention thấp hơn booking online." },

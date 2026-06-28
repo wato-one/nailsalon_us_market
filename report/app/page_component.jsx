@@ -15,6 +15,10 @@ import {
   competitorData,
   segments,
   infoSources,
+  consumerLabels,
+  consumerDemographics,
+  consumerPsychographics,
+  consumerMediaBehavior,
   journeyStages,
   strategyData,
   sectionHints,
@@ -498,6 +502,86 @@ export default function App() {
           <h2 style={{ fontFamily: theme.fonts.display, fontSize: "28px", marginBottom: "8px" }}>Khách hàng mục tiêu</h2>
           <p style={{ color: theme.colors.muted, marginBottom: "20px" }}>{sectionIntros.consumer}</p>
           <SectionTermHint terms={sectionHints.consumer} />
+
+          <h3 style={{ fontSize: "18px", marginBottom: "8px" }}>{consumerLabels.demographicsTitle}</h3>
+          <p style={{ fontSize: "13px", color: theme.colors.muted, marginBottom: "16px", lineHeight: 1.6 }}>
+            {consumerLabels.demographicsIntro}
+          </p>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
+              gap: "12px",
+              marginBottom: "32px",
+            }}
+          >
+            {consumerDemographics.map((row) => (
+              <div key={`${row.category}-${row.metric}`} style={{ ...cardStyle, marginBottom: 0, padding: "16px" }}>
+                <div style={{ fontSize: "11px", fontWeight: 700, color: theme.colors.accent, letterSpacing: "0.04em" }}>
+                  {row.category}
+                </div>
+                <div style={{ fontSize: "22px", fontWeight: 700, color: theme.colors.ink, margin: "4px 0" }}>{row.metric}</div>
+                <div style={{ fontSize: "13px", fontWeight: 600, marginBottom: "6px" }}>{row.value}</div>
+                <p style={{ fontSize: "12px", lineHeight: 1.55, color: theme.colors.muted, margin: 0 }}>
+                  {row.detail}
+                  <SourceRefs ids={row.sourceIds} />
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <h3 style={{ fontSize: "18px", marginBottom: "8px" }}>{consumerLabels.psychographicsTitle}</h3>
+          <p style={{ fontSize: "13px", color: theme.colors.muted, marginBottom: "16px", lineHeight: 1.6 }}>
+            {consumerLabels.psychographicsIntro}
+          </p>
+          {consumerPsychographics.map((item) => (
+            <div key={item.headline} style={cardStyle}>
+              <div style={{ marginBottom: "6px" }}>
+                {item.impact && <Badge type={item.impact} />}
+                <strong style={{ fontSize: "15px" }}>{item.headline}</strong>
+              </div>
+              <p style={{ margin: 0, fontSize: "14px", lineHeight: 1.65, color: theme.colors.muted }}>
+                {item.detail}
+                <SourceRefs ids={item.sourceIds} />
+              </p>
+            </div>
+          ))}
+
+          <h3 style={{ fontSize: "18px", margin: "32px 0 8px" }}>{consumerLabels.mediaTitle}</h3>
+          <p style={{ fontSize: "13px", color: theme.colors.muted, marginBottom: "16px", lineHeight: 1.6 }}>
+            {consumerLabels.mediaIntro}
+          </p>
+          <div style={{ overflowX: "auto", marginBottom: "32px" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "13px" }}>
+              <thead>
+                <tr style={{ background: theme.colors.bgAlt }}>
+                  <th style={{ padding: "10px", textAlign: "left", borderBottom: `1px solid ${theme.colors.line}` }}>Nền tảng</th>
+                  <th style={{ padding: "10px", textAlign: "left", borderBottom: `1px solid ${theme.colors.line}` }}>Vai trò</th>
+                  <th style={{ padding: "10px", textAlign: "left", borderBottom: `1px solid ${theme.colors.line}` }}>Hành vi</th>
+                  <th style={{ padding: "10px", textAlign: "left", borderBottom: `1px solid ${theme.colors.line}` }}>Quan trọng</th>
+                  <th style={{ padding: "10px", textAlign: "left", borderBottom: `1px solid ${theme.colors.line}` }}>Chi tiết</th>
+                </tr>
+              </thead>
+              <tbody>
+                {consumerMediaBehavior.map((row) => (
+                  <tr key={row.platform}>
+                    <td style={{ padding: "10px", borderBottom: `1px solid ${theme.colors.lineSoft}`, fontWeight: 600 }}>{row.platform}</td>
+                    <td style={{ padding: "10px", borderBottom: `1px solid ${theme.colors.lineSoft}`, color: theme.colors.muted }}>{row.role}</td>
+                    <td style={{ padding: "10px", borderBottom: `1px solid ${theme.colors.lineSoft}`, color: theme.colors.muted }}>{row.behavior}</td>
+                    <td style={{ padding: "10px", borderBottom: `1px solid ${theme.colors.lineSoft}` }}>
+                      <ThreatDots level={row.importance} />
+                    </td>
+                    <td style={{ padding: "10px", borderBottom: `1px solid ${theme.colors.lineSoft}`, color: theme.colors.muted }}>
+                      {row.detail}
+                      <SourceRefs ids={row.sourceIds} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <h3 style={{ fontSize: "18px", marginBottom: "12px" }}>{consumerLabels.segmentsTitle}</h3>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "16px", marginBottom: "32px" }}>
             {segments.map((seg) => (
               <div key={seg.name} style={cardStyle}>
@@ -505,6 +589,15 @@ export default function App() {
                 <h3 style={{ margin: "10px 0 4px", fontSize: "16px" }}>{seg.name}</h3>
                 <div style={{ fontSize: "22px", fontWeight: 700, color: theme.colors.accentDeep }}>{seg.pct}</div>
                 <div style={{ fontSize: "12px", color: theme.colors.muted, marginBottom: "12px" }}>{seg.sizeMarket}</div>
+                <p style={{ fontSize: "12px", lineHeight: 1.55, color: theme.colors.muted, margin: "0 0 6px" }}>
+                  <strong>Demographic:</strong> {seg.demographics}
+                </p>
+                <p style={{ fontSize: "12px", lineHeight: 1.55, color: theme.colors.muted, margin: "0 0 6px" }}>
+                  <strong>Psychographic:</strong> {seg.psychographics}
+                </p>
+                <p style={{ fontSize: "12px", lineHeight: 1.55, color: theme.colors.muted, margin: "0 0 8px" }}>
+                  <strong>Media:</strong> {seg.media}
+                </p>
                 <p style={{ fontSize: "13px", lineHeight: 1.55, color: theme.colors.muted, margin: "0 0 8px" }}>
                   <strong>Hồ sơ:</strong> {seg.profile}
                 </p>
@@ -514,10 +607,15 @@ export default function App() {
                 <p style={{ fontSize: "12px", color: theme.colors.muted, margin: "4px 0" }}>
                   <strong>Rào cản:</strong> {seg.barrier}
                 </p>
+                {seg.sourceIds && (
+                  <div style={{ marginTop: "8px" }}>
+                    <SourceRefs ids={seg.sourceIds} />
+                  </div>
+                )}
               </div>
             ))}
           </div>
-          <h3 style={{ fontSize: "18px", marginBottom: "12px" }}>Nguồn thông tin khi chọn salon</h3>
+          <h3 style={{ fontSize: "18px", marginBottom: "12px" }}>{consumerLabels.infoSourcesTitle}</h3>
           <div style={{ overflowX: "auto" }}>
             <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "13px" }}>
               <thead>
