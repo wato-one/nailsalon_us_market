@@ -20,6 +20,15 @@ import {
   infoSourcesCompareRows,
   consumerLabels,
   journeyCompare,
+  commSectionLabels,
+  commIntroCompare,
+  commCoreMessageRows,
+  commChannelRows,
+  commSegmentRows,
+  commJourneyRows,
+  commCalendarRow,
+  commGuidelineRows,
+  commMetricsRow,
   strategyData,
   sectionHints,
 } from "./report-content-vi";
@@ -421,6 +430,51 @@ function InfoSourceCard({ rowLabel, data }) {
   );
 }
 
+function CommunicationCard({ rowLabel, data }) {
+  if (!data) return <CompareTopicPlaceholder rowLabel={rowLabel} />;
+  return (
+    <div style={{ ...equalHeightCardStyle, padding: "14px" }}>
+      <div style={{ fontSize: "11px", fontWeight: 700, color: theme.colors.accent, letterSpacing: "0.04em", marginBottom: "8px" }}>{rowLabel}</div>
+      {data.priority && (
+        <span
+          style={{
+            display: "inline-block",
+            fontSize: "10px",
+            fontWeight: 700,
+            color: theme.colors.accentDeep,
+            background: theme.colors.bgAlt,
+            padding: "2px 8px",
+            borderRadius: theme.radius.sm,
+            marginBottom: "8px",
+          }}
+        >
+          {data.priority}
+        </span>
+      )}
+      {data.detail && (
+        <p style={{ margin: "0 0 8px", fontSize: "13px", lineHeight: 1.65, color: theme.colors.muted }}>{data.detail}</p>
+      )}
+      {data.tagline && (
+        <p style={{ margin: "0 0 8px", fontSize: "13px", lineHeight: 1.55, color: theme.colors.ink, fontStyle: "italic" }}>{data.tagline}</p>
+      )}
+      {data.bullets?.length > 0 && (
+        <ul style={{ margin: 0, paddingLeft: "18px", fontSize: "13px", lineHeight: 1.6, color: theme.colors.muted, flex: 1 }}>
+          {data.bullets.map((item) => (
+            <li key={item} style={{ marginBottom: "6px" }}>
+              {item}
+            </li>
+          ))}
+        </ul>
+      )}
+      {data.sourceIds && (
+        <div style={{ marginTop: "8px" }}>
+          <SourceRefs ids={data.sourceIds} />
+        </div>
+      )}
+    </div>
+  );
+}
+
 function TermGlossary({ terms }) {
   return (
     <div style={{ display: "grid", gap: "12px" }}>
@@ -777,6 +831,83 @@ export default function App() {
               </div>
             </div>
           ))}
+        </section>
+
+        <section id="communication" style={sectionStyle}>
+          <h2 style={{ fontFamily: theme.fonts.display, fontSize: "28px", marginBottom: "8px" }}>Đề xuất truyền thông</h2>
+          <p style={{ color: theme.colors.muted, marginBottom: "20px" }}>{sectionIntros.communication}</p>
+          <CompareColumnHeaders />
+          <CompareTwoColumns
+            left={
+              <div style={{ ...equalHeightCardStyle, padding: "16px" }}>
+                <p style={{ fontSize: "13px", color: theme.colors.muted, margin: 0, lineHeight: 1.65 }}>{commIntroCompare.california}</p>
+                <SourceRefs ids={commIntroCompare.sourceIds} />
+              </div>
+            }
+            right={
+              <div style={{ ...equalHeightCardStyle, padding: "16px" }}>
+                <p style={{ fontSize: "13px", color: theme.colors.muted, margin: 0, lineHeight: 1.65 }}>{commIntroCompare.sanDiego}</p>
+                <SourceRefs ids={commIntroCompare.sourceIds} />
+              </div>
+            }
+          />
+
+          <CompareSubheading title={commSectionLabels.coreMessages} />
+          {commCoreMessageRows.map((row) => (
+            <CompareTwoColumns
+              key={row.rowLabel}
+              left={<CommunicationCard rowLabel={row.rowLabel} data={row.california} />}
+              right={<CommunicationCard rowLabel={row.rowLabel} data={row.sanDiego} />}
+            />
+          ))}
+
+          <CompareSubheading title={commSectionLabels.channels} />
+          {commChannelRows.map((row) => (
+            <CompareTwoColumns
+              key={row.rowLabel}
+              left={<CommunicationCard rowLabel={row.rowLabel} data={row.california} />}
+              right={<CommunicationCard rowLabel={row.rowLabel} data={row.sanDiego} />}
+            />
+          ))}
+
+          <CompareSubheading title={commSectionLabels.segments} />
+          {commSegmentRows.map((row) => (
+            <CompareTwoColumns
+              key={row.rowLabel}
+              left={<CommunicationCard rowLabel={row.rowLabel} data={row.california} />}
+              right={<CommunicationCard rowLabel={row.rowLabel} data={row.sanDiego} />}
+            />
+          ))}
+
+          <CompareSubheading title={commSectionLabels.journey} />
+          {commJourneyRows.map((row) => (
+            <CompareTwoColumns
+              key={row.rowLabel}
+              left={<CommunicationCard rowLabel={row.rowLabel} data={row.california} />}
+              right={<CommunicationCard rowLabel={row.rowLabel} data={row.sanDiego} />}
+            />
+          ))}
+
+          <CompareSubheading title={commSectionLabels.calendar} />
+          <CompareTwoColumns
+            left={<CommunicationCard rowLabel={commCalendarRow.rowLabel} data={commCalendarRow.california} />}
+            right={<CommunicationCard rowLabel={commCalendarRow.rowLabel} data={commCalendarRow.sanDiego} />}
+          />
+
+          <CompareSubheading title={commSectionLabels.guidelines} />
+          {commGuidelineRows.map((row) => (
+            <CompareTwoColumns
+              key={row.rowLabel}
+              left={<CommunicationCard rowLabel={row.rowLabel} data={row.california} />}
+              right={<CommunicationCard rowLabel={row.rowLabel} data={row.sanDiego} />}
+            />
+          ))}
+
+          <CompareSubheading title={commSectionLabels.metrics} />
+          <CompareTwoColumns
+            left={<CommunicationCard rowLabel={commMetricsRow.rowLabel} data={commMetricsRow.california} />}
+            right={<CommunicationCard rowLabel={commMetricsRow.rowLabel} data={commMetricsRow.sanDiego} />}
+          />
         </section>
 
         <section id="strategy" style={sectionStyle}>

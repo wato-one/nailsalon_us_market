@@ -7,6 +7,7 @@ export const sections = [
   { id: "competitors", label: "Đối thủ" },
   { id: "consumer", label: "Khách hàng" },
   { id: "journey", label: "Hành trình mua/Sử dụng dịch vụ" },
+  { id: "communication", label: "Truyền thông" },
   { id: "strategy", label: "Chiến lược" },
   { id: "glossary", label: "Thuật ngữ" },
 ];
@@ -34,7 +35,9 @@ export const sectionIntros = {
     "Khách nail ở California và San Diego khác nhau thế nào — thông tin cơ bản, suy nghĩ, nhóm khách và cách họ tìm tiệm.",
   journey:
     "Khách đi từ lúc nghĩ đến làm nail đến lúc quay lại — so sánh California và San Diego từng bước.",
-  strategy: "Đề xuất chiến lược cho nhà đầu tư, chuỗi và salon độc lập tại Mỹ.",
+  communication:
+    "Gợi ý truyền thông thực tế cho tiệm nail — thông điệp, kênh, nhóm khách và lịch nội dung; so sánh California và San Diego.",
+  strategy: "Đề xuất chiến lược cho nhà đầu tư, chuỗi và tiệm độc lập tại Mỹ.",
   valueChain: "Chuỗi giá trị ngành nail tại Hoa Kỳ",
 };
 
@@ -301,6 +304,18 @@ export {
   competitorsCompareRows,
   infoSourcesCompareRows,
 } from "./regional-compare-rows";
+
+export {
+  commSectionLabels,
+  commIntroCompare,
+  commCoreMessageRows,
+  commChannelRows,
+  commSegmentRows,
+  commJourneyRows,
+  commCalendarRow,
+  commGuidelineRows,
+  commMetricsRow,
+} from "./communication-strategy";
 
 export const journeyStages = [
   {
