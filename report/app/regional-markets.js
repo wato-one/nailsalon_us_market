@@ -143,7 +143,7 @@ export const consumerMarkets = [
         sourceIds: ["statista-consumer-csv-2023", "gmi-nail-salon-2025"],
       },
       {
-        category: "Tuổi trung vị",
+        category: "Tuổi trung bình",
         metric: "~38,4",
         value: "Lõi khách 25–55",
         detail:
@@ -151,7 +151,7 @@ export const consumerMarkets = [
         sourceIds: ["census-sd-county-2024"],
       },
       {
-        category: "Giới — khách dịch vụ",
+        category: "Giới tính",
         metric: "~90%+ nữ",
         value: "Ngành nail salon",
         detail:
@@ -167,7 +167,7 @@ export const consumerMarkets = [
         sourceIds: ["ucla-nail-files-2024", "statista-consumer-csv-2023"],
       },
       {
-        category: "Thu nhập hộ",
+        category: "Thu nhập (hộ gia đình)",
         metric: "~USD 100K",
         value: "Median HH (bang)",
         detail:
@@ -349,7 +349,7 @@ export const consumerMarkets = [
         sourceIds: ["census-sd-county-2024", "census-sd-city-2024"],
       },
       {
-        category: "Thu nhập hộ",
+        category: "Thu nhập (hộ gia đình)",
         metric: "USD 109–113K",
         value: "County · Santee",
         detail: "32–38% hộ USD 100–200K; đủ chi manicure USD 25–45 và pedicure premium USD 60–80 định kỳ.",

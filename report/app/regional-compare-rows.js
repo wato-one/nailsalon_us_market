@@ -19,7 +19,7 @@ export const demographicsCompareRows = [
     },
   },
   {
-    rowLabel: "Tuổi trung vị",
+    rowLabel: "Tuổi trung bình",
     california: {
       metric: "~38,4",
       value: "Lõi khách 25–55 tuổi",
@@ -36,7 +36,7 @@ export const demographicsCompareRows = [
     },
   },
   {
-    rowLabel: "Giới — khách dịch vụ",
+    rowLabel: "Giới tính",
     california: {
       metric: "~90%+ nữ",
       value: "Khách tiệm nail",
@@ -69,7 +69,7 @@ export const demographicsCompareRows = [
     },
   },
   {
-    rowLabel: "Thu nhập hộ",
+    rowLabel: "Thu nhập (hộ gia đình)",
     california: {
       metric: "~USD 100K",
       value: "Thu nhập giữa (bang)",
@@ -121,7 +121,7 @@ export const psychographicsCompareRows = [
     },
   },
   {
-    rowLabel: "Đi tiệm đều đặn",
+    rowLabel: "Tần suất sử dụng dịch vụ",
     california: {
       detail:
         "Nhiều khách đi 2–4 tuần một lần. Móng gel dài ra khiến họ muốn đi sớm — không chỉ trước dịp lễ.",
