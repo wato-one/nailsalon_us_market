@@ -292,7 +292,7 @@ function CompareSubheading({ title }) {
   );
 }
 
-function CompareTopicPlaceholder({ rowLabel, note = "Không nổi bật tại thị trường này" }) {
+function CompareTopicPlaceholder({ rowLabel, note = "Chưa có dữ liệu nổi bật cho mục này" }) {
   return (
     <div style={{ ...equalHeightCardStyle, padding: "14px" }}>
       <div style={{ fontSize: "11px", fontWeight: 700, color: theme.colors.accent, letterSpacing: "0.04em", marginBottom: "8px" }}>{rowLabel}</div>

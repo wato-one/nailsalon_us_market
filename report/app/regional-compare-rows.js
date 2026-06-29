@@ -1,4 +1,4 @@
-/** Parallel CA | SD rows — same topic label on each side, same row order */
+/** Parallel CA | SD rows — cùng tiêu đề chủ đề, thuật ngữ tiếng Việt thống nhất */
 
 export const demographicsCompareRows = [
   {
@@ -12,9 +12,9 @@ export const demographicsCompareRows = [
     },
     sanDiego: {
       metric: "3,3 triệu",
-      value: "San Diego County",
+      value: "Quận San Diego",
       detail:
-        "Thành phố San Diego ~1,4 triệu dân. Mật độ tiệm nail cao; có urban, ngoại ô East County, North County và khu quân sự.",
+        "Thành phố San Diego ~1,4 triệu dân. Mật độ tiệm nail cao; có khu đô thị, ngoại ô East County, North County và khu quân sự.",
       sourceIds: ["census-sd-county-2024", "census-sd-city-2024"],
     },
   },
@@ -22,9 +22,9 @@ export const demographicsCompareRows = [
     rowLabel: "Tuổi trung vị",
     california: {
       metric: "~38,4",
-      value: "Lõi khách 25–55",
+      value: "Lõi khách 25–55 tuổi",
       detail:
-        "Người 25–55 tuổi đi tiệm thường xuyên nhất. Người 65+ hay chọn pedicure/spa ở vùng ven biển và ngoại ô.",
+        "Nhóm 25–55 tuổi đi tiệm thường xuyên nhất. Người từ 65 tuổi hay chọn pedicure/spa ở ven biển và ngoại ô.",
       sourceIds: ["census-sd-county-2024"],
     },
     sanDiego: {
@@ -39,14 +39,14 @@ export const demographicsCompareRows = [
     rowLabel: "Giới — khách dịch vụ",
     california: {
       metric: "~90%+ nữ",
-      value: "Khách nail salon",
+      value: "Khách tiệm nail",
       detail:
         "Phần lớn khách manicure/pedicure là phụ nữ. Nam giới và khách không phân biệt giới đang tăng ở thành phố lớn.",
       sourceIds: ["statista-nail-salons-us", "gmi-nail-salon-2025"],
     },
     sanDiego: {
       metric: "~90%+ nữ",
-      value: "Khách nail salon",
+      value: "Khách tiệm nail",
       detail:
         "Tương tự California. Thêm nhóm quân nhân nam và khách nam ở khu căn cứ — cần menu và không gian phù hợp.",
       sourceIds: ["statista-nail-salons-us", "gmi-nail-salon-2025", "census-sd-county-2024"],
@@ -63,7 +63,7 @@ export const demographicsCompareRows = [
     },
     sanDiego: {
       metric: "35% Hispanic",
-      value: "County đa dạng",
+      value: "Quận — đa dạng",
       detail: "41% White, 13% Asian, 35% Hispanic — cả nail art và dịch vụ giá trung bình đều phổ biến.",
       sourceIds: ["census-sd-county-2024", "census-sd-city-2024"],
     },
@@ -79,7 +79,7 @@ export const demographicsCompareRows = [
     },
     sanDiego: {
       metric: "USD 109–113K",
-      value: "County · Santee",
+      value: "Quận · Santee",
       detail:
         "32–38% hộ thu USD 100–200K. Đủ chi manicure USD 25–45 và pedicure cao cấp USD 60–80 định kỳ.",
       sourceIds: ["census-sd-county-2024", "census-santee-2024", "cpi-east-county-income"],
@@ -109,13 +109,13 @@ export const psychographicsCompareRows = [
     rowLabel: "Vệ sinh & an toàn",
     california: {
       detail:
-        "Khách quen tiệm phải sạch, có sổ ghi bồn ngâm chân (luật BBC California). Tiệm vi phạm hoặc review xấu lan nhanh.",
+        "Khách quen tiệm phải sạch, có sổ ghi bồn ngâm chân (luật vệ sinh BBC California). Tiệm vi phạm hoặc đánh giá xấu lan nhanh.",
       impact: "critical",
       sourceIds: ["ca-bbc-art12", "brightlocal-reviews-2024"],
     },
     sanDiego: {
       detail:
-        "Review hay nhắc bồn ngâm chân sạch, không mùi nồng. Khách đổi sang tiệm khác cùng khu nếu thấy dụng cụ không sạch.",
+        "Đánh giá online hay nhắc bồn ngâm chân sạch, không mùi nồng. Khách đổi sang tiệm khác cùng khu nếu thấy dụng cụ không sạch.",
       impact: "critical",
       sourceIds: ["ca-bbc-art12", "brightlocal-reviews-2024", "wve-exposed-report"],
     },
@@ -175,7 +175,7 @@ export const psychographicsCompareRows = [
     },
     sanDiego: {
       detail:
-        "Tương tự — review và ảnh thật quyết định thử tiệm mới. Bạn bè và hàng xóm (đặc biệt Santee) cũng hay giới thiệu.",
+        "Tương tự — đánh giá online và ảnh thật quyết định thử tiệm mới. Bạn bè và hàng xóm (đặc biệt Santee) cũng hay giới thiệu.",
       impact: "critical",
       sourceIds: ["brightlocal-reviews-2024", "gmi-nail-salon-2025"],
     },
@@ -188,13 +188,13 @@ export const segmentsCompareRows = [
     california: {
       tag: "CHÍNH",
       tagColor: "#C0001E",
-      name: "Khách suburb & nội địa",
+      name: "Khách ngoại ô & nội địa",
       pct: "~45–50%",
-      sizeMarket: "Inland Empire · Central Valley · suburb",
+      sizeMarket: "Inland Empire · Central Valley · ngoại ô",
       profile: "Manicure/pedicure 2–4 tuần; giá USD 25–45; tip 15–20%.",
       mindset: "Giá ổn định, thợ quen, ít thử tiệm mới",
       channel: "Google Maps, giới thiệu, đi thẳng",
-      barrier: "Chờ cuối tuần, lo vệ sinh BBC",
+      barrier: "Chờ cuối tuần, lo vệ sinh bồn ngâm chân",
       sourceIds: ["gmi-nail-salon-2025", "ca-bbc-art12"],
     },
     sanDiego: {
@@ -215,11 +215,11 @@ export const segmentsCompareRows = [
     california: {
       tag: "TĂNG TRƯỞNG",
       tagColor: "#1565C0",
-      name: "Nail art & xu hướng — urban",
+      name: "Nail art & xu hướng — khu đô thị",
       pct: "~20–25%",
-      sizeMarket: "LA · SF · SD urban · Gen Z/Millennials",
+      sizeMarket: "LA · SF · SD khu đô thị · Gen Z/Millennials",
       profile: "Gel, dipping, nail art; chi USD 45–80+; chia sẻ lên mạng.",
-      mindset: "Thể hiện cá tính; theo trend TikTok/Instagram",
+      mindset: "Thể hiện cá tính; theo xu hướng TikTok/Instagram",
       channel: "TikTok, Instagram, ảnh mẫu của thợ",
       barrier: "Giá cao; thời gian làm lâu",
       sourceIds: ["gmi-nail-salon-2025", "nails-magazine-industry"],
@@ -242,25 +242,25 @@ export const segmentsCompareRows = [
     california: {
       tag: "GIÁ CAO",
       tagColor: "#2E7D32",
-      name: "Wellness & spa — ven biển",
+      name: "Spa cao cấp — ven biển",
       pct: "~15–20%",
       sizeMarket: "Ven biển · thu nhập cao",
       profile: "Pedicure spa USD 80–150+; sản phẩm sạch; không gian yên tĩnh.",
       mindset: "Giảm stress, chăm bản thân; ít quan tâm giá",
       channel: "Website spa, khách sạn giới thiệu, Yelp",
-      barrier: "Kỳ vọng sang trọng; cạnh med-spa",
+      barrier: "Kỳ vọng sang trọng; cạnh spa y khoa",
       sourceIds: ["gmi-nail-salon-2025", "wve-exposed-report"],
     },
     sanDiego: {
       tag: "GIÁ CAO",
       tagColor: "#2E7D32",
-      name: "Khách premium — urban & ven biển",
+      name: "Khách cao cấp — khu đô thị & ven biển",
       pct: "15–20%",
       sizeMarket: "23% hộ >USD 200K",
       profile: "Pedicure đặc biệt USD 60–120+; đi khi stress hoặc làm quà.",
       mindset: "Trải nghiệm yên tính, sạch; ít nhạy giá",
       channel: "Yelp ảnh thật, website đặt lịch",
-      barrier: "Kỳ vọng sang trọng; cạnh med-spa",
+      barrier: "Kỳ vọng sang trọng; cạnh spa y khoa",
       sourceIds: ["census-sd-county-2024", "gmi-nail-salon-2025"],
     },
   },
@@ -274,7 +274,7 @@ export const segmentsCompareRows = [
       sizeMarket: "Thành phố lớn · đang tăng",
       profile: "Manicure/pedicure cơ bản USD 20–35; pedicure thể thao.",
       mindset: "Ngại tiệm \"chỉ cho nữ\"; cần menu và trang trí trung tính",
-      channel: "Google gần đây, bạn giới thiệu",
+      channel: "Google Maps gần đây, bạn giới thiệu",
       barrier: "Ngại lần đầu đến tiệm",
       sourceIds: ["gmi-nail-salon-2025"],
     },
@@ -283,10 +283,10 @@ export const segmentsCompareRows = [
       tagColor: "#6A1B9A",
       name: "Nam giới & gia đình quân nhân",
       pct: "8–12%",
-      sizeMarket: "SD city + căn cứ quân sự",
+      sizeMarket: "Thành phố SD + căn cứ quân sự",
       profile: "Manicure cơ bản USD 20–25; pedicure thể thao.",
       mindset: "Ngại tiệm quá \"nữ tính\"; cần menu nam rõ ràng",
-      channel: "Google gần đây, đồng nghiệp giới thiệu",
+      channel: "Google Maps gần đây, đồng nghiệp giới thiệu",
       barrier: "Ngại lần đầu; chuyển trú phải tìm tiệm mới",
       sourceIds: ["gmi-nail-salon-2025", "census-sd-city-2024"],
     },
@@ -295,21 +295,21 @@ export const segmentsCompareRows = [
 
 export const competitorsCompareRows = [
   {
-    rowLabel: "Salon độc lập",
+    rowLabel: "Tiệm độc lập",
     california: {
-      name: "Salon độc lập — toàn bang",
+      name: "Tiệm độc lập — toàn bang",
       type: "Độc lập · ~62% thị trường Mỹ",
-      rating: "3,5–5★ · đa dạng theo khu",
+      rating: "3,5–5 sao · đa dạng theo khu",
       threat: 5,
       strengths:
-        "Nhiều tiệm ở strip mall và ngoại ô; thợ quen khách; linh hoạt giá; cộng đồng salon mạnh.",
+        "Nhiều tiệm ở khu mua sắm và ngoại ô; thợ quen khách; linh hoạt giá; cộng đồng tiệm nail mạnh.",
       weaknesses: "Chất lượng không đều; vệ sinh BBC chưa đều; đặt lịch online còn yếu.",
       sourceIds: ["gmi-nail-salon-2025", "ucla-nail-files-2024", "ca-bbc-art12"],
     },
     sanDiego: {
-      name: "Salon độc lập — SD County",
-      type: "Độc lập · strip mall & plaza",
-      rating: "4,0–5★ · đa dạng",
+      name: "Tiệm độc lập — Quận SD",
+      type: "Độc lập · khu mua sắm & plaza",
+      rating: "4,0–5 sao · đa dạng",
       threat: 5,
       strengths: "Nhiều tiệm mỗi khu; thợ quen khách; giá USD 25–55; cuối tuần East County đông.",
       weaknesses: "Chờ lâu cuối tuần; thợ nghỉ việc; đặt lịch online không đều.",
@@ -333,7 +333,7 @@ export const competitorsCompareRows = [
       rating: "Nail + spa · nhiều điểm",
       threat: 4,
       strengths: "Nhận diện thương hiệu khu vực; menu spa rộng; marketing tốt hơn tiệm nhỏ lẻ.",
-      weaknesses: "Ít điểm hơn tiệm độc lập; giá cao hơn tiệm entry.",
+      weaknesses: "Ít điểm hơn tiệm độc lập; giá cao hơn tiệm giá rẻ.",
       sourceIds: ["happy-nails-spa", "census-sd-county-2024"],
     },
   },
@@ -341,14 +341,24 @@ export const competitorsCompareRows = [
     rowLabel: "Chuỗi nhượng quyền",
     california: {
       name: "Pro Nails",
-      type: "Franchise · có mặt tại CA",
+      type: "Nhượng quyền · có mặt tại CA",
       rating: "Hàng trăm điểm · giá trung bình",
       threat: 3,
       strengths: "Quy trình chuẩn, đào tạo thợ, mở rộng ở ngoại ô Inland Empire và Central Valley.",
-      weaknesses: "Phí nhượng quyền; chất lượng theo từng chủ; khó cạnh spa cao cấp LA/SF.",
+      weaknesses: "Phí nhượng quyền; chất lượng theo từng chủ; khó cạnh tiệm cao cấp LA/SF.",
       sourceIds: ["pro-nails-franchise", "gmi-nail-salon-2025"],
     },
-    sanDiego: null,
+    sanDiego: {
+      name: "Pro Nails",
+      type: "Nhượng quyền · vài điểm tại SD County",
+      rating: "Giá trung bình · ít điểm hơn tiệm độc lập",
+      threat: 2,
+      strengths:
+        "Quy trình chuẩn, đào tạo thợ; có mặt tại SD County và vùng lân cận (Chula Vista, National City).",
+      weaknesses:
+        "Ít điểm hơn tiệm độc lập; khó cạnh tiệm cao cấp ven biển La Jolla, Del Mar.",
+      sourceIds: ["pro-nails-franchise", "gmi-nail-salon-2025", "census-sd-county-2024"],
+    },
   },
   {
     rowLabel: "Tiệm trong siêu thị",
@@ -358,7 +368,7 @@ export const competitorsCompareRows = [
       rating: "Giá rẻ · nhiều khách qua lại",
       threat: 3,
       strengths: "Khách Walmart/Sam's Club; tiện; giá manicure thấp.",
-      weaknesses: "Trải nghiệm cao cấp hạn chế; review không đều; không làm nail art phức tạp.",
+      weaknesses: "Trải nghiệm cao cấp hạn chế; đánh giá không đều; không làm nail art phức tạp.",
       sourceIds: ["regal-nails", "gmi-nail-salon-2025"],
     },
     sanDiego: {
@@ -367,48 +377,48 @@ export const competitorsCompareRows = [
       rating: "Giá rẻ · tiện lợi",
       threat: 2,
       strengths: "Khách Walmart; giá thấp; nhanh khi đi mua sắm.",
-      weaknesses: "Review trung bình; không nail art phức tạp; khách quay lại ít.",
+      weaknesses: "Đánh giá trung bình; không nail art phức tạp; khách quay lại ít.",
       sourceIds: ["regal-nails", "gmi-nail-salon-2025"],
     },
   },
   {
     rowLabel: "Tiệm cao cấp / spa",
     california: {
-      name: "Spa / med-spa tích hợp nail",
-      type: "Full-service · LA / Bay Area / ven biển",
-      rating: "Premium USD 80–150+",
+      name: "Spa / spa y khoa có nail",
+      type: "Dịch vụ đầy đủ · LA / Bay Area / ven biển",
+      rating: "Cao cấp USD 80–150+",
       threat: 3,
-      strengths: "Gói wellness, không gian sang, khách thu nhập cao ven biển và đô thị.",
+      strengths: "Gói chăm sóc sức khỏe, không gian sang, khách thu nhập cao ven biển và đô thị.",
       weaknesses: "Giá cao; không phục vụ khách giá rẻ; cạnh tiệm nail chuyên biệt.",
       sourceIds: ["gmi-nail-salon-2025", "statista-nail-salons-us"],
     },
     sanDiego: {
-      name: "Salon premium — urban & ven biển SD",
-      type: "Spa nail · La Jolla / downtown / Del Mar",
+      name: "Tiệm cao cấp — khu đô thị & ven biển SD",
+      type: "Spa nail · La Jolla / trung tâm / Del Mar",
       rating: "USD 70–120+ pedicure",
       threat: 3,
-      strengths: "Khách thu nhập cao (23% hộ >USD 200K); yên tĩnh, sản phẩm premium.",
-      weaknesses: "Không phù hợp ngoại ô East County; cạnh hotel spa và med-spa.",
+      strengths: "Khách thu nhập cao (23% hộ >USD 200K); yên tĩnh, sản phẩm cao cấp.",
+      weaknesses: "Không phù hợp ngoại ô East County; cạnh spa khách sạn và spa y khoa.",
       sourceIds: ["census-sd-county-2024", "gmi-nail-salon-2025"],
     },
   },
   {
     rowLabel: "Làm nail tại nhà (thay thế)",
     california: {
-      name: "DIY / press-on / gel tại nhà",
+      name: "Tự làm / press-on / gel tại nhà",
       type: "Thay thế · giá rẻ",
       rating: "Amazon / Ulta",
       threat: 2,
-      strengths: "Tiết kiệm; tiện tại nhà; Gen Z thử trend nhanh.",
+      strengths: "Tiết kiệm; tiện tại nhà; Gen Z thử xu hướng nhanh.",
       weaknesses: "Không có pedicure chuyên sâu; thiếu trải nghiệm tại tiệm.",
       sourceIds: ["gmi-nail-salon-2025", "statista-consumer-csv-2023"],
     },
     sanDiego: {
-      name: "DIY / press-on / gel tại nhà",
+      name: "Tự làm / press-on / gel tại nhà",
       type: "Thay thế · giá rẻ",
       rating: "Amazon / Ulta",
       threat: 2,
-      strengths: "Tiết kiệm; tiện tại nhà; Gen Z thử trend nhanh.",
+      strengths: "Tiết kiệm; tiện tại nhà; Gen Z thử xu hướng nhanh.",
       weaknesses: "Không pedicure chuyên sâu; khó nail art phức tạp.",
       sourceIds: ["gmi-nail-salon-2025", "statista-consumer-csv-2023"],
     },
@@ -433,12 +443,12 @@ export const infoSourcesCompareRows = [
     rowLabel: "Yelp",
     california: {
       importance: 4,
-      detail: "Review chi tiết LA/SF/SD; ảnh thật quyết định thử tiệm mới",
+      detail: "Đánh giá chi tiết LA/SF/SD; ảnh thật quyết định thử tiệm mới",
       sourceIds: ["brightlocal-reviews-2024"],
     },
     sanDiego: {
       importance: 4,
-      detail: "Review East County; ảnh bồn ngâm chân quyết định thử tiệm mới",
+      detail: "Đánh giá East County; ảnh bồn ngâm chân quyết định thử tiệm mới",
       sourceIds: ["brightlocal-reviews-2024"],
     },
   },
@@ -446,7 +456,7 @@ export const infoSourcesCompareRows = [
     rowLabel: "Giới thiệu trực tiếp",
     california: {
       importance: 4,
-      detail: "Giới thiệu trong cộng đồng Á/Việt — bổ sung cho review online",
+      detail: "Giới thiệu trong cộng đồng Á/Việt — bổ sung cho đánh giá online",
       sourceIds: ["gmi-nail-salon-2025"],
     },
     sanDiego: {
@@ -459,12 +469,12 @@ export const infoSourcesCompareRows = [
     rowLabel: "TikTok / Instagram",
     california: {
       importance: 4,
-      detail: "Nail art trend, video ASMR tiệm — Gen Z/Millennials thành phố",
+      detail: "Nail art, video ASMR tiệm — Gen Z/Millennials thành phố",
       sourceIds: ["gmi-nail-salon-2025", "nails-magazine-industry"],
     },
     sanDiego: {
       importance: 3,
-      detail: "Reels nail art, ảnh before/after — Gen Z/Millennials SD",
+      detail: "Reels nail art, ảnh trước/sau — Gen Z/Millennials SD",
       sourceIds: ["gmi-nail-salon-2025", "nails-magazine-industry"],
     },
   },
@@ -490,7 +500,7 @@ export const infoSourcesCompareRows = [
     },
     sanDiego: {
       importance: 4,
-      detail: "Menu giá minh bạch; đặt lịch ban đêm qua web hoặc app",
+      detail: "Menu giá rõ ràng; đặt lịch ban đêm qua web hoặc app",
       sourceIds: ["blvd-salon-stats-2025"],
     },
   },

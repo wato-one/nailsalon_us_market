@@ -500,7 +500,7 @@ export const journeyCompare = [
     color: "#1565C0",
     bgColor: "rgba(21, 101, 192, 0.06)",
     california:
-      "Khách hay đi khi có đám cưới, lễ, Tết, hoặc móng gel đã dài cần làm lại (thường 2–4 tuần một lần). Salon nên đăng ảnh mùa trên Facebook và Instagram.",
+      "Khách hay đi khi có đám cưới, lễ, Tết, hoặc móng gel đã dài cần làm lại (thường 2–4 tuần một lần). Tiệm nên đăng ảnh mùa trên Facebook và Instagram.",
     sanDiego:
       "Tương tự California, nhưng nhiều khách ở vùng ngoại ô (East County) hay đi cả gia đình cuối tuần. Tiệm gần nhà được ưu tiên hơn tiệm xa.",
     sourceIds: ["statista-consumer-csv-2023", "gmi-nail-salon-2025", "census-santee-2024"],
@@ -509,12 +509,12 @@ export const journeyCompare = [
     num: 2,
     icon: "🔍",
     title: "Tìm tiệm",
-    subtitle: "Khách so sánh salon thế nào?",
+    subtitle: "Khách so sánh tiệm thế nào?",
     duration: "Vài phút – 2 ngày",
     color: "#6A1B9A",
     bgColor: "rgba(106, 27, 154, 0.06)",
     california:
-      "Khách gõ Google \"nail salon near me\", xem sao đánh giá — dưới 3 sao thì bỏ qua. So giá trên web. Đọc review về sạch sẽ, bồn ngâm chân.",
+      "Khách gõ Google \"nail salon near me\", xem sao đánh giá — dưới 3 sao thì bỏ qua. So giá trên web. Đọc đánh giá về sạch sẽ, bồn ngâm chân.",
     sanDiego:
       "Khách San Diego so khoảng cách rất kỹ — thường chọn tiệm trong bán kính 5–15 dặm. Yelp và Google quan trọng hơn tên thương hiệu lớn.",
     sourceIds: ["brightlocal-reviews-2024", "statista-nail-salons-us"],
@@ -542,7 +542,7 @@ export const journeyCompare = [
     color: "#C0001E",
     bgColor: "rgba(192, 0, 30, 0.06)",
     california:
-      "Khách quan tâm thợ làm có khéo không, chỗ có sạch không (luật vệ sinh BBC của California). Salon có thể gợi ý thêm dịch vụ như sơn gel, paraffin.",
+      "Khách quan tâm thợ làm có khéo không, chỗ có sạch không (luật vệ sinh BBC California). Tiệm có thể gợi ý thêm dịch vụ như sơn gel, paraffin.",
     sanDiego:
       "Khách hay quay lại cùng thợ nếu hài lòng. Mùi hóa chất và bồn ngâm chân không sạch là lý do bỏ tiệm ngay — kể cả tiệm cùng khu.",
     sourceIds: ["ca-bbc-art12", "brightlocal-reviews-2024", "wve-exposed-report"],
@@ -558,7 +558,7 @@ export const journeyCompare = [
     california:
       "Tip 15–25% là thông lệ tại Mỹ — phần thu nhập quan trọng của thợ. Thanh toán thẻ phổ biến; một số tiệm có gói tháng.",
     sanDiego:
-      "Giống California: tip 15–25%, trả thẻ qua máy POS. Khách quân nhân và gia đình thường tip ổn định nếu hài lòng dịch vụ.",
+      "Giống California: tip 15–25%, trả thẻ qua máy thanh toán. Khách quân nhân và gia đình thường tip ổn định nếu hài lòng dịch vụ.",
     sourceIds: ["ucla-nail-files-2024", "bls-manicurists"],
   },
   {
@@ -570,9 +570,9 @@ export const journeyCompare = [
     color: "#C9A535",
     bgColor: "rgba(201, 165, 53, 0.1)",
     california:
-      "Review trên Google và Yelp ảnh hưởng rất lớn vì cạnh tranh dày. Khách hài lòng hay đăng ảnh nail lên Instagram hoặc TikTok.",
+      "Đánh giá trên Google và Yelp ảnh hưởng rất lớn vì cạnh tranh dày. Khách hài lòng hay đăng ảnh nail lên Instagram hoặc TikTok.",
     sanDiego:
-      "Bạn bè, hàng xóm (đặc biệt ở Santee) hay giới thiệu tiệm uy tín. Review online vẫn quan trọng — ảnh thật quyết định thử tiệm mới.",
+      "Bạn bè, hàng xóm (đặc biệt ở Santee) hay giới thiệu tiệm uy tín. Đánh giá online vẫn quan trọng — ảnh thật quyết định thử tiệm mới.",
     sourceIds: ["brightlocal-reviews-2024", "gmi-nail-salon-2025"],
   },
   {
@@ -584,9 +584,9 @@ export const journeyCompare = [
     color: "#00695C",
     bgColor: "rgba(0, 105, 92, 0.06)",
     california:
-      "Salon nhắc lịch fill gel qua tin nhắn trước 2 tuần. Khách trung thành với thợ quen — đổi thợ thường làm mất khách.",
+      "Tiệm nhắc lịch fill gel qua tin nhắn trước 2 tuần. Khách trung thành với thợ quen — đổi thợ thường làm mất khách.",
     sanDiego:
-      "Gia đình quay lại tiệm sạch, có ghế cho trẻ. Quân nhân chuyển trú thì tìm tiệm mới qua Google — cần review cao và giá rõ ràng.",
+      "Gia đình quay lại tiệm sạch, có ghế cho trẻ. Quân nhân chuyển trú thì tìm tiệm mới qua Google — cần đánh giá cao và giá rõ ràng.",
     sourceIds: ["salon-today-retention", "blvd-salon-stats-2025", "census-sd-county-2024"],
   },
 ];
