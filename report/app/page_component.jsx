@@ -13,7 +13,11 @@ import {
   pestelData,
   porterData,
   competitorMarkets,
-  consumerMarkets,
+  demographicsCompareRows,
+  psychographicsCompareRows,
+  segmentsCompareRows,
+  competitorsCompareRows,
+  infoSourcesCompareRows,
   consumerLabels,
   journeyCompare,
   strategyData,
@@ -257,39 +261,6 @@ function CompareTwoColumns({ left, right, style }) {
   );
 }
 
-function ComparePlaceholder() {
-  return (
-    <div
-      style={{
-        ...equalHeightCardStyle,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        color: theme.colors.muted,
-        fontSize: "13px",
-        opacity: 0.4,
-      }}
-    >
-      —
-    </div>
-  );
-}
-
-function ComparePairedRows({ leftItems = [], rightItems = [], renderLeft, renderRight, getKey }) {
-  const count = Math.max(leftItems.length, rightItems.length);
-  return (
-    <>
-      {Array.from({ length: count }, (_, i) => (
-        <CompareTwoColumns
-          key={getKey ? getKey(leftItems[i], rightItems[i], i) : i}
-          left={leftItems[i] ? renderLeft(leftItems[i], i) : <ComparePlaceholder />}
-          right={rightItems[i] ? renderRight(rightItems[i], i) : <ComparePlaceholder />}
-        />
-      ))}
-    </>
-  );
-}
-
 function CompareColumnHeaders() {
   return (
     <div
@@ -321,21 +292,32 @@ function CompareSubheading({ title }) {
   );
 }
 
-function CompetitorCard({ c, marketId }) {
+function CompareTopicPlaceholder({ rowLabel, note = "Không nổi bật tại thị trường này" }) {
+  return (
+    <div style={{ ...equalHeightCardStyle, padding: "14px" }}>
+      <div style={{ fontSize: "11px", fontWeight: 700, color: theme.colors.accent, letterSpacing: "0.04em", marginBottom: "8px" }}>{rowLabel}</div>
+      <p style={{ margin: 0, fontSize: "13px", color: theme.colors.muted, flex: 1 }}>{note}</p>
+    </div>
+  );
+}
+
+function CompetitorCard({ rowLabel, data }) {
+  if (!data) return <CompareTopicPlaceholder rowLabel={rowLabel} />;
   return (
     <div style={{ ...equalHeightCardStyle, padding: "24px" }}>
+      <div style={{ fontSize: "11px", fontWeight: 700, color: theme.colors.accent, letterSpacing: "0.04em", marginBottom: "8px" }}>{rowLabel}</div>
       <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "8px", marginBottom: "12px" }}>
         <div>
-          <h4 style={{ margin: "0 0 4px", fontSize: "16px" }}>{c.name}</h4>
-          <span style={{ fontSize: "12px", padding: "2px 8px", background: theme.colors.bgAlt, borderRadius: theme.radius.sm }}>{c.type}</span>
+          <h4 style={{ margin: "0 0 4px", fontSize: "16px" }}>{data.name}</h4>
+          <span style={{ fontSize: "12px", padding: "2px 8px", background: theme.colors.bgAlt, borderRadius: theme.radius.sm }}>{data.type}</span>
         </div>
         <div style={{ textAlign: "right" }}>
-          <div style={{ fontSize: "13px", fontWeight: 600 }}>{c.rating}</div>
-          {c.threat > 0 && (
+          <div style={{ fontSize: "13px", fontWeight: 600 }}>{data.rating}</div>
+          {data.threat > 0 && (
             <div style={{ fontSize: "12px", color: theme.colors.muted, marginTop: "4px" }}>
-              Mức cạnh tranh: {THREAT_LABELS[c.threat] || c.threat}
+              Mức cạnh tranh: {THREAT_LABELS[data.threat] || data.threat}
               <span style={{ marginLeft: "6px" }}>
-                <ThreatDots level={c.threat} />
+                <ThreatDots level={data.threat} />
               </span>
             </div>
           )}
@@ -344,90 +326,95 @@ function CompetitorCard({ c, marketId }) {
       <div style={{ fontSize: "13px", flex: 1 }}>
         <div style={{ marginBottom: "8px" }}>
           <strong style={{ color: "#2E7D32" }}>Điểm mạnh</strong>
-          <p style={{ margin: "4px 0 0", color: theme.colors.muted, lineHeight: 1.55 }}>{c.strengths}</p>
+          <p style={{ margin: "4px 0 0", color: theme.colors.muted, lineHeight: 1.55 }}>{data.strengths}</p>
         </div>
         <div>
           <strong style={{ color: "#C62828" }}>Điểm yếu</strong>
-          <p style={{ margin: "4px 0 0", color: theme.colors.muted, lineHeight: 1.55 }}>{c.weaknesses}</p>
+          <p style={{ margin: "4px 0 0", color: theme.colors.muted, lineHeight: 1.55 }}>{data.weaknesses}</p>
         </div>
       </div>
-      {c.sourceIds && (
+      {data.sourceIds && (
         <div style={{ marginTop: "8px" }}>
-          <SourceRefs ids={c.sourceIds} />
+          <SourceRefs ids={data.sourceIds} />
         </div>
       )}
     </div>
   );
 }
 
-function DemographicCard({ row, marketId }) {
+function DemographicCard({ rowLabel, data }) {
+  if (!data) return <CompareTopicPlaceholder rowLabel={rowLabel} />;
   return (
     <div style={{ ...equalHeightCardStyle, padding: "14px" }}>
-      <div style={{ fontSize: "11px", fontWeight: 700, color: theme.colors.accent, letterSpacing: "0.04em" }}>{row.category}</div>
-      <div style={{ fontSize: "20px", fontWeight: 700, color: theme.colors.ink, margin: "4px 0" }}>{row.metric}</div>
-      <div style={{ fontSize: "13px", fontWeight: 600, marginBottom: "6px" }}>{row.value}</div>
+      <div style={{ fontSize: "11px", fontWeight: 700, color: theme.colors.accent, letterSpacing: "0.04em", marginBottom: "8px" }}>{rowLabel}</div>
+      <div style={{ fontSize: "20px", fontWeight: 700, color: theme.colors.ink, margin: "4px 0" }}>{data.metric}</div>
+      <div style={{ fontSize: "13px", fontWeight: 600, marginBottom: "6px" }}>{data.value}</div>
       <p style={{ fontSize: "12px", lineHeight: 1.55, color: theme.colors.muted, margin: 0, flex: 1 }}>
-        {row.detail}
-        <SourceRefs ids={row.sourceIds} />
+        {data.detail}
+        <SourceRefs ids={data.sourceIds} />
       </p>
     </div>
   );
 }
 
-function PsychographicCard({ item, marketId }) {
+function PsychographicCard({ rowLabel, data }) {
+  if (!data) return <CompareTopicPlaceholder rowLabel={rowLabel} />;
   return (
     <div style={{ ...equalHeightCardStyle, padding: "14px" }}>
-      <div style={{ marginBottom: "6px" }}>
-        {item.impact && <Badge type={item.impact} />}
-        <strong style={{ fontSize: "14px" }}>{item.headline}</strong>
-      </div>
+      <div style={{ fontSize: "11px", fontWeight: 700, color: theme.colors.accent, letterSpacing: "0.04em", marginBottom: "8px" }}>{rowLabel}</div>
+      {data.impact && (
+        <div style={{ marginBottom: "6px" }}>
+          <Badge type={data.impact} />
+        </div>
+      )}
       <p style={{ margin: 0, fontSize: "13px", lineHeight: 1.6, color: theme.colors.muted, flex: 1 }}>
-        {item.detail}
-        <SourceRefs ids={item.sourceIds} />
+        {data.detail}
+        <SourceRefs ids={data.sourceIds} />
       </p>
     </div>
   );
 }
 
-function SegmentCard({ seg, marketId }) {
+function SegmentCard({ rowLabel, data }) {
+  if (!data) return <CompareTopicPlaceholder rowLabel={rowLabel} />;
   return (
     <div style={{ ...equalHeightCardStyle, padding: "14px" }}>
-      <span style={{ fontSize: "10px", fontWeight: 700, color: "#fff", background: seg.tagColor, padding: "3px 8px", borderRadius: theme.radius.sm }}>{seg.tag}</span>
-      <h5 style={{ margin: "10px 0 4px", fontSize: "15px" }}>{seg.name}</h5>
-      <div style={{ fontSize: "20px", fontWeight: 700, color: theme.colors.accentDeep }}>{seg.pct}</div>
-      <div style={{ fontSize: "12px", color: theme.colors.muted, marginBottom: "10px" }}>{seg.sizeMarket}</div>
+      <div style={{ fontSize: "11px", fontWeight: 700, color: theme.colors.accent, letterSpacing: "0.04em", marginBottom: "8px" }}>{rowLabel}</div>
+      <span style={{ fontSize: "10px", fontWeight: 700, color: "#fff", background: data.tagColor, padding: "3px 8px", borderRadius: theme.radius.sm }}>{data.tag}</span>
+      <h5 style={{ margin: "10px 0 4px", fontSize: "15px" }}>{data.name}</h5>
+      <div style={{ fontSize: "20px", fontWeight: 700, color: theme.colors.accentDeep }}>{data.pct}</div>
+      <div style={{ fontSize: "12px", color: theme.colors.muted, marginBottom: "10px" }}>{data.sizeMarket}</div>
       <p style={{ fontSize: "12px", lineHeight: 1.55, color: theme.colors.muted, margin: "0 0 6px" }}>
-        <strong>{consumerLabels.segmentProfile}:</strong> {seg.profile}
+        <strong>{consumerLabels.segmentProfile}:</strong> {data.profile}
       </p>
       <p style={{ fontSize: "12px", lineHeight: 1.55, color: theme.colors.muted, margin: "0 0 6px" }}>
-        <strong>{consumerLabels.segmentMindset}:</strong> {seg.psychographics}
+        <strong>{consumerLabels.segmentMindset}:</strong> {data.mindset}
       </p>
       <p style={{ fontSize: "12px", color: theme.colors.muted, margin: "4px 0" }}>
-        <strong>{consumerLabels.segmentChannel}:</strong> {seg.channel}
+        <strong>{consumerLabels.segmentChannel}:</strong> {data.channel}
       </p>
       <p style={{ fontSize: "12px", color: theme.colors.muted, margin: "4px 0", flex: 1 }}>
-        <strong>{consumerLabels.segmentBarrier}:</strong> {seg.barrier}
+        <strong>{consumerLabels.segmentBarrier}:</strong> {data.barrier}
       </p>
-      {seg.sourceIds && (
+      {data.sourceIds && (
         <div style={{ marginTop: "6px" }}>
-          <SourceRefs ids={seg.sourceIds} />
+          <SourceRefs ids={data.sourceIds} />
         </div>
       )}
     </div>
   );
 }
 
-function InfoSourceCard({ row, marketId }) {
+function InfoSourceCard({ rowLabel, data }) {
+  if (!data) return <CompareTopicPlaceholder rowLabel={rowLabel} />;
   return (
     <div style={{ ...equalHeightCardStyle, padding: "14px" }}>
-      <div style={{ fontSize: "13px", lineHeight: 1.55 }}>
-        <strong>{row.name}</strong>
-        <span style={{ marginLeft: "6px", color: theme.colors.muted }}>
-          ({THREAT_LABELS[row.importance] || row.importance})
-        </span>
-        <p style={{ margin: "8px 0 0", color: theme.colors.muted, flex: 1 }}>
-          {row.detail}
-          <SourceRefs ids={row.sourceIds} />
+      <div style={{ fontSize: "11px", fontWeight: 700, color: theme.colors.accent, letterSpacing: "0.04em", marginBottom: "8px" }}>{rowLabel}</div>
+      <div style={{ fontSize: "13px", lineHeight: 1.55, flex: 1 }}>
+        <span style={{ color: theme.colors.muted }}>Mức quan trọng: {THREAT_LABELS[data.importance] || data.importance}</span>
+        <p style={{ margin: "8px 0 0", color: theme.colors.muted }}>
+          {data.detail}
+          <SourceRefs ids={data.sourceIds} />
         </p>
       </div>
     </div>
@@ -458,8 +445,6 @@ export default function App() {
   const [activeSection, setActiveSection] = useState("overview");
   const caCompetitors = competitorMarkets.find((m) => m.marketId === "california");
   const sdCompetitors = competitorMarkets.find((m) => m.marketId === "san-diego");
-  const caConsumer = consumerMarkets.find((m) => m.marketId === "california");
-  const sdConsumer = consumerMarkets.find((m) => m.marketId === "san-diego");
 
   useEffect(() => {
     const link = document.createElement("link");
@@ -714,13 +699,13 @@ export default function App() {
               </div>
             }
           />
-          <ComparePairedRows
-            leftItems={caCompetitors?.competitors || []}
-            rightItems={sdCompetitors?.competitors || []}
-            getKey={(l, r, i) => `comp-${i}-${l?.name || r?.name}`}
-            renderLeft={(c) => <CompetitorCard c={c} marketId="california" />}
-            renderRight={(c) => <CompetitorCard c={c} marketId="san-diego" />}
-          />
+          {competitorsCompareRows.map((row) => (
+            <CompareTwoColumns
+              key={row.rowLabel}
+              left={<CompetitorCard rowLabel={row.rowLabel} data={row.california} />}
+              right={<CompetitorCard rowLabel={row.rowLabel} data={row.sanDiego} />}
+            />
+          ))}
         </section>
 
         <section id="consumer" style={sectionStyle}>
@@ -729,40 +714,40 @@ export default function App() {
           <CompareColumnHeaders />
 
           <CompareSubheading title={consumerLabels.demographicsTitle} />
-          <ComparePairedRows
-            leftItems={caConsumer?.demographics || []}
-            rightItems={sdConsumer?.demographics || []}
-            getKey={(l, r, i) => `demo-${i}-${l?.category || r?.category}`}
-            renderLeft={(row) => <DemographicCard row={row} marketId="california" />}
-            renderRight={(row) => <DemographicCard row={row} marketId="san-diego" />}
-          />
+          {demographicsCompareRows.map((row) => (
+            <CompareTwoColumns
+              key={row.rowLabel}
+              left={<DemographicCard rowLabel={row.rowLabel} data={row.california} />}
+              right={<DemographicCard rowLabel={row.rowLabel} data={row.sanDiego} />}
+            />
+          ))}
 
           <CompareSubheading title={consumerLabels.psychographicsTitle} />
-          <ComparePairedRows
-            leftItems={caConsumer?.psychographics || []}
-            rightItems={sdConsumer?.psychographics || []}
-            getKey={(l, r, i) => `psycho-${i}-${l?.headline || r?.headline}`}
-            renderLeft={(item) => <PsychographicCard item={item} marketId="california" />}
-            renderRight={(item) => <PsychographicCard item={item} marketId="san-diego" />}
-          />
+          {psychographicsCompareRows.map((row) => (
+            <CompareTwoColumns
+              key={row.rowLabel}
+              left={<PsychographicCard rowLabel={row.rowLabel} data={row.california} />}
+              right={<PsychographicCard rowLabel={row.rowLabel} data={row.sanDiego} />}
+            />
+          ))}
 
           <CompareSubheading title={consumerLabels.segmentsTitle} />
-          <ComparePairedRows
-            leftItems={caConsumer?.segments || []}
-            rightItems={sdConsumer?.segments || []}
-            getKey={(l, r, i) => `seg-${i}-${l?.name || r?.name}`}
-            renderLeft={(seg) => <SegmentCard seg={seg} marketId="california" />}
-            renderRight={(seg) => <SegmentCard seg={seg} marketId="san-diego" />}
-          />
+          {segmentsCompareRows.map((row) => (
+            <CompareTwoColumns
+              key={row.rowLabel}
+              left={<SegmentCard rowLabel={row.rowLabel} data={row.california} />}
+              right={<SegmentCard rowLabel={row.rowLabel} data={row.sanDiego} />}
+            />
+          ))}
 
           <CompareSubheading title={consumerLabels.infoSourcesTitle} />
-          <ComparePairedRows
-            leftItems={caConsumer?.infoSources || []}
-            rightItems={sdConsumer?.infoSources || []}
-            getKey={(l, r, i) => `info-${i}-${l?.rank || r?.rank}`}
-            renderLeft={(row) => <InfoSourceCard row={row} marketId="california" />}
-            renderRight={(row) => <InfoSourceCard row={row} marketId="san-diego" />}
-          />
+          {infoSourcesCompareRows.map((row) => (
+            <CompareTwoColumns
+              key={row.rowLabel}
+              left={<InfoSourceCard rowLabel={row.rowLabel} data={row.california} />}
+              right={<InfoSourceCard rowLabel={row.rowLabel} data={row.sanDiego} />}
+            />
+          ))}
         </section>
 
         <section id="journey" style={sectionStyle}>

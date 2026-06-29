@@ -294,6 +294,14 @@ export const porterData = [
 
 export { competitorMarkets, consumerMarkets, journeyCompare } from "./regional-markets";
 
+export {
+  demographicsCompareRows,
+  psychographicsCompareRows,
+  segmentsCompareRows,
+  competitorsCompareRows,
+  infoSourcesCompareRows,
+} from "./regional-compare-rows";
+
 export const journeyStages = [
   {
     num: 1,
