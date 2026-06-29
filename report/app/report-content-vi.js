@@ -1,10 +1,12 @@
+import { competitorMarkets, consumerMarkets } from "./regional-markets";
+
 export const sections = [
   { id: "overview", label: "Tổng quan" },
   { id: "pestel", label: "PESTEL" },
   { id: "porter", label: "Porter" },
   { id: "competitors", label: "Đối thủ" },
   { id: "consumer", label: "Khách hàng" },
-  { id: "journey", label: "Hành trình mua" },
+  { id: "journey", label: "Hành trình mua/Sử dụng dịch vụ" },
   { id: "strategy", label: "Chiến lược" },
   { id: "glossary", label: "Thuật ngữ" },
 ];
@@ -26,23 +28,22 @@ export const footerMeta = {
 export const sectionIntros = {
   pestel: "Yếu tố vĩ mô ảnh hưởng toàn ngành nail salon tại Hoa Kỳ.",
   porter: "Năm lực lượng cạnh tranh trong ngành nail salon Mỹ.",
-  competitors: "Chuỗi quốc gia, franchise và phân khúc salon độc lập chiếm đa số thị trường.",
+  competitors:
+    "Phân tích đối thủ riêng cho California (bang) và San Diego (thị trường địa phương) — mô hình, mức đe dọa và khác biệt vị trí địa lý.",
   consumer:
-    "Chân dung khách hàng dịch vụ nail tại California và San Diego: demographic theo Census/ACS, tâm lý khi book và trải nghiệm tại salon — không bao gồm dữ liệu lao động/thợ (UCLA Nail Files).",
-  journey: "Từ kích hoạt nhu cầu đến tái mua dịch vụ nail trên toàn quốc.",
+    "Chân dung khách dịch vụ nail theo từng thị trường: California và San Diego — mỗi thị trường có Demographic và Psychographic riêng.",
+  journey:
+    "Hành trình mua và sử dụng dịch vụ nail — từ kích hoạt nhu cầu đến tái mua, áp dụng cho khách CA/SD.",
   strategy: "Đề xuất chiến lược cho nhà đầu tư, chuỗi và salon độc lập tại Mỹ.",
   valueChain: "Chuỗi giá trị ngành nail tại Hoa Kỳ",
 };
 
 export const consumerLabels = {
-  demographicsTitle: "Demographic — Chân dung khách dịch vụ",
-  demographicsIntro:
-    "Dân số và thu nhập khu vực San Diego County, thành phố San Diego và East County (Santee) — ACS/Census 2024. Đây là người sử dụng manicure/pedicure/spa nail, không phải profile lao động nail technician.",
-  psychographicsTitle: "Psychographic — Tâm lý khi dùng dịch vụ",
-  psychographicsIntro:
-    "Insight về động cơ, lo lắng và kỳ vọng trong hành trình book → ngồi ghế → quay lại — tổng hợp từ review (BrightLocal), xu hướng salon (Boulevard/GMI) và quy định vệ sinh CA (BBC).",
-  segmentsTitle: "Phân khúc khách salon — CA & San Diego",
-  infoSourcesTitle: "Nguồn thông tin khi chọn salon (San Diego)",
+  marketHeading: "Thị trường",
+  demographicsTitle: "Demographic",
+  psychographicsTitle: "Psychographic",
+  segmentsTitle: "Customer Segmentation",
+  infoSourcesTitle: "Nguồn thông tin khi chọn salon",
 };
 
 export const valueChain = [
@@ -287,332 +288,7 @@ export const porterData = [
   },
 ];
 
-export const competitorData = [
-  {
-    name: "Salon độc lập (phân khúc đa số)",
-    type: "Độc lập · ~62% thị trường",
-    rating: "Đa dạng 3,5–5★",
-    threat: 4,
-    strengths:
-      "Linh hoạt giá, gần khách hàng, quan hệ thợ–khách lâu dài, chi phí franchise = 0.",
-    weaknesses:
-      "Thiếu marketing tập trung, công nghệ đặt lịch yếu, phụ thuộc reputation địa phương.",
-    sourceIds: ["gmi-nail-salon-2025", "ucla-nail-files-2024"],
-  },
-  {
-    name: "Regal Nails",
-    type: "Salon-in-retail · Walmart/Sam's Club",
-    rating: "Quy mô quốc gia · giá entry",
-    threat: 3,
-    strengths:
-      "Lượng khách Walmart, vị trí thuận tiện, nhận diện thương hiệu, chi phí mặt bằng thấp.",
-    weaknesses:
-      "Trải nghiệm premium hạn chế, phụ thuộc foot traffic retail, review không đồng đều theo điểm.",
-    sourceIds: ["regal-nails", "gmi-nail-salon-2025"],
-  },
-  {
-    name: "Pro Nails",
-    type: "Franchise quốc gia",
-    rating: "Hàng trăm điểm · mid-range",
-    threat: 3,
-    strengths:
-      "Playbook vận hành, đào tạo thợ, marketing thương hiệu, mở rộng nhanh tại suburb.",
-    weaknesses:
-      "Phí franchise, kiểm soát chất lượng đa điểm, cạnh tranh với độc lập giá rẻ hơn.",
-    sourceIds: ["pro-nails-franchise", "gmi-nail-salon-2025"],
-  },
-  {
-    name: "Happy Nails & Spa",
-    type: "Chuỗi khu vực · Tây Coast",
-    rating: "Multi-location · full-service spa",
-    threat: 4,
-    strengths:
-      "Menu dịch vụ rộng (nail + spa), quy mô marketing khu vực, vị trí premium strip mall.",
-    weaknesses:
-      "Tập trung địa lý hạn chế so với quốc gia, áp lực lao động tại CA.",
-    sourceIds: ["happy-nails-spa", "ucla-nail-files-2024"],
-  },
-  {
-    name: "Nails of America",
-    type: "Franchise · kiosk & storefront",
-    rating: "Quốc gia · mid-range",
-    threat: 2,
-    strengths:
-      "Mô hình kiosk linh hoạt, brand nhượng quyền, hỗ trợ setup.",
-    weaknesses:
-      "Nhận diện thương hiệu yếu hơn Regal/Pro Nails, phụ thuộc franchisee.",
-    sourceIds: ["nails-of-america", "gmi-nail-salon-2025"],
-  },
-];
-
-export const consumerDemographics = [
-  {
-    category: "San Diego County",
-    metric: "3,3 triệu",
-    value: "Dân số · thị trường chính",
-    detail:
-      "Quận San Diego là vùng tiêu thụ dịch vụ nail lớn nhất tại Southern California — mật độ salon cao, đa phân khúc giá.",
-    sourceIds: ["census-sd-county-2024"],
-  },
-  {
-    category: "Thành phố San Diego",
-    metric: "1,4 triệu",
-    value: "Đô thị · renter 54%",
-    detail:
-      "Khách đô thị ưu tiên salon gần nhà/làm việc; median age 36,6 — nhóm Millennials/Gen X là lõi demand.",
-    sourceIds: ["census-sd-city-2024"],
-  },
-  {
-    category: "East County — Santee",
-    metric: "~59.000",
-    value: "Suburb gia đình · 92071",
-    detail:
-      "Thành phố định hướng gia đình; 70% hộ gia đình là cặp vợ chồng — phù hợp walk-in cuối tuần và dịch vụ trẻ em.",
-    sourceIds: ["census-santee-2024", "santee-city-demographics"],
-  },
-  {
-    category: "Tuổi trung vị",
-    metric: "36,6–40,3",
-    value: "City SD · Santee cao hơn",
-    detail:
-      "County 37,8 tuổi; lõi khách dịch vụ thường 25–55 (làm việc + self-care), seniors 65+ tập trung pedicure/spa.",
-    sourceIds: ["census-sd-county-2024", "census-sd-city-2024", "census-santee-2024"],
-  },
-  {
-    category: "Giới — khách dịch vụ",
-    metric: "~90%+ nữ",
-    value: "Ngành nail salon Mỹ",
-    detail:
-      "Dân số SD cân bằng ~50/50 nam-nữ, nhưng khách manicure/pedicure chủ yếu là phụ nữ (IBISWorld/NAILS). Nam giới đang tăng (~8–12% segment).",
-    sourceIds: ["statista-nail-salons-us", "gmi-nail-salon-2025"],
-  },
-  {
-    category: "Sắc tộc / ethnicity",
-    metric: "35% Hispanic",
-    value: "County · đa dạng",
-    detail:
-      "County: 41% White, 13% Asian, 35% Hispanic; City SD: 30% Hispanic, 17% Asian — nhu cầu nail art và giá mid-range đều cao.",
-    sourceIds: ["census-sd-county-2024", "census-sd-city-2024"],
-  },
-  {
-    category: "Thu nhập hộ — County",
-    metric: "USD 109.132",
-    value: "Median household",
-    detail:
-      "32% hộ thu nhập USD 100–200K; 23% trên USD 200K — đủ sức chi manicure USD 25–45 và pedicure premium USD 60–80 định kỳ.",
-    sourceIds: ["census-sd-county-2024"],
-  },
-  {
-    category: "Thu nhập hộ — Santee",
-    metric: "USD 113.394",
-    value: "Cao hơn county ~4%",
-    detail:
-      "38% hộ USD 100–200K; owner-occupied 72% — khách East County lái xe đến strip mall, tip 15–20% là chuẩn.",
-    sourceIds: ["census-santee-2024", "cpi-east-county-income"],
-  },
-  {
-    category: "Cấu trúc hộ gia đình",
-    metric: "60–70%",
-    value: "Cặp vợ chồng có con",
-    detail:
-      "County 60% married-couple households; Santee 70% — driver cho combo phụ huynh + kid manicure cuối tuần.",
-    sourceIds: ["census-sd-county-2024", "census-santee-2024"],
-  },
-  {
-    category: "Lực lượng lao động 18–64",
-    metric: "60–67%",
-    value: "Nhóm đi làm",
-    detail:
-      "Khách book sau giờ làm hoặc cuối tuần; mean commute Santee ~27 phút — salon gần strip mall thuận tiện.",
-    sourceIds: ["census-sd-county-2024", "census-santee-2024"],
-  },
-  {
-    category: "Di chuyển",
-    metric: "72% lái xe",
-    value: "Santee · suburban",
-    detail:
-      "Suburb phụ thuộc ô tô — vị trí, parking và salon trong cùng khu mua sắm ảnh hưởng lựa chọn hơn transit.",
-    sourceIds: ["census-santee-2024"],
-  },
-  {
-    category: "Nhu cầu nail — proxy West",
-    metric: "62%",
-    value: "Penetration vùng West (Statista)",
-    detail:
-      "Khảo sát sản phẩm nail US (n=1.092, 07/2023): 62% người trả lời vùng West dùng nail — proxy cho CA, không thay thế dữ liệu khách salon địa phương.",
-    sourceIds: ["statista-consumer-csv-2023"],
-  },
-];
-
-export const consumerPsychographics = [
-  {
-    headline: "Self-care định kỳ — không phải dịp đặc biệt",
-    detail:
-      "Khách CA coi manicure/pedicure như chi phí chăm sóc bản thân 2–4 tuần/lần (GMI mid-range). Gel grown-out hoặc móng xấu tạo áp lực tâm lý 'phải đi sớm' — không chỉ trước sự kiện.",
-    impact: "opportunity",
-    sourceIds: ["gmi-nail-salon-2025", "blvd-salon-stats-2025"],
-  },
-  {
-    headline: "Lo lắng vệ sinh — quyết định trước khi ngồi ghế",
-    detail:
-      "Review salon SD nhấn mạnh sạch sẽ, footspa, mùi hóa chất. BBC California (Article 12) tạo kỳ vọng nhật ký pedicure — khách sẵn sàng đổi salon nếu thấy dụng cụ không sạch hoặc không gian bẩn.",
-    impact: "critical",
-    sourceIds: ["ca-bbc-art12", "brightlocal-reviews-2024", "wve-exposed-report"],
-  },
-  {
-    headline: "Trust qua rating — không thử salon dưới 3★",
-    detail:
-      "BrightLocal 2024: ~71% người Mỹ không cân nhắc doanh nghiệp dưới 3★. Tại SD, Google Maps + Yelp là bước 'xác minh' bắt buộc trước walk-in — ảnh thực tế pedicure station quan trọng hơn quảng cáo.",
-    impact: "critical",
-    sourceIds: ["brightlocal-reviews-2024"],
-  },
-  {
-    headline: "Gắn bó thợ — switching cost cảm xúc",
-    detail:
-      "Khách thường quay lại cùng kỹ thuật viên khi hài lòng kỹ thuật gel/độ bền. Đổi salon dễ về mặt địa lý (nhiều lựa chọn SD) nhưng khó về mặt tin cậy — turnover thợ làm gián đoạn loyalty.",
-    impact: "high",
-    sourceIds: ["gmi-nail-salon-2025", "blvd-salon-stats-2025"],
-  },
-  {
-    headline: "Nhạy giá nhưng chấp nhận upsell có lý do",
-    detail:
-      "Menu tier rõ (basic → gel → signature pedicure) giảm anxiety surprise bill. Khách East County sẵn sàng trả USD 52–80 pedicure spa khi thấy giá trị (thời gian, massage, sản phẩm premium) — không chỉ manicure entry USD 20–25.",
-    impact: "insight",
-    sourceIds: ["gmi-nail-salon-2025", "cpi-east-county-income", "statista-nail-salons-us"],
-  },
-  {
-    headline: "Sự kiện & mùa — spike demand",
-    detail:
-      "Đám cưới, lễ (Tết, holiday), mùa hè (sandals) kích hoạt nail art và pedicure gấp. Psychographic 'phải hoàn hảo trong ảnh' mạnh ở Gen Z/Millennials SD — book sớm hoặc chấp nhận chờ cuối tuần.",
-    impact: "opportunity",
-    sourceIds: ["gmi-nail-salon-2025", "nails-magazine-industry"],
-  },
-  {
-    headline: "Chờ đợi & tiện lợi — pain point cuối tuần",
-    detail:
-      "Walk-in Chủ nhật tại East County thường kèm lo lắng thời gian chờ và rush service. ~46–50% booking online ngoài giờ mở cửa — khách muốn kiểm soát lịch, giảm uncertainty.",
-    impact: "high",
-    sourceIds: ["blvd-salon-stats-2025", "salon-today-retention"],
-  },
-  {
-    headline: "Salon gia đình — an toàn cho trẻ",
-    detail:
-      "Phụ huynh Santee mang con theo cuối tuần cần không gian sạch, dịch vụ kid manicure, không mùi hóa chất quá mạnh. Rào cản tâm lý: 'salon có an toàn cho con không?' — vượt rào cản này tạo repeat visit cả hộ.",
-    impact: "insight",
-    sourceIds: ["santee-city-demographics", "ca-bbc-art12"],
-  },
-  {
-    headline: "Nam giới — cần không gian 'không chỉ cho nữ'",
-    detail:
-      "Segment nam tăng (manicure cơ bản, pedicure thể thao) nhưng vẫn e ngại salon quá feminine. Menu rõ ràng, décor trung tính và thợ không phán xét giảm social anxiety khi bước vào lần đầu.",
-    impact: "opportunity",
-    sourceIds: ["gmi-nail-salon-2025"],
-  },
-];
-
-export const segments = [
-  {
-    name: "Phụ nữ làm việc East County",
-    tag: "CHÍNH",
-    tagColor: "#C0001E",
-    pct: "35–40%",
-    sizeMarket: "Santee · El Cajon · Lakeside",
-    demographics: "Nữ 25–55 · median HH Santee USD 113K · lái xe 72% · married 56%",
-    psychographics: "Self-care gọn cho công việc; ghét chờ walk-in cuối tuần; loyalty thợ quen",
-    profile:
-      "Manicure/pedicure 2–4 tuần; tip 15–20%; trigger sự kiện, mùa hè, trước kỳ nghỉ.",
-    channel: "Google Maps, Yelp, đặt lịch online, SMS nhắc fill",
-    barrier: "Thời gian chờ, parking strip mall, lo vệ sinh pedicure",
-    sourceIds: ["census-santee-2024", "cpi-east-county-income", "brightlocal-reviews-2024"],
-  },
-  {
-    name: "Gia đình & phụ huynh Santee",
-    tag: "TĂNG TRƯỞNG",
-    tagColor: "#2575FC",
-    pct: "25–30%",
-    sizeMarket: "~21.000 hộ · 2,7 người/hộ",
-    demographics: "Phụ huynh 30–50 · 70% married-couple HH · fertility 6,6% cao hơn county",
-    psychographics: "Coi nail như self-care gia đình; cần salon sạch cho trẻ; cuối tuần là ritual",
-    profile:
-      "Combo manicure phụ huynh + kid service; walk-in Chủ nhật; trigger sinh nhật, lễ.",
-    channel: "Walk-in, Facebook group cộng đồng SD East, giới thiệu hàng xóm",
-    barrier: "An toàn vệ sinh cho trẻ, mùi hóa chất, thiếu ghế trống cả gia đình",
-    sourceIds: ["census-santee-2024", "santee-city-demographics", "ca-bbc-art12"],
-  },
-  {
-    name: "Khách premium spa — SD County",
-    tag: "GIÁ TRỊ CAO",
-    tagColor: "#2E7D32",
-    pct: "15–20%",
-    sizeMarket: "23% hộ county thu nhập >USD 200K",
-    demographics: "35+ · Gen X/Boomer · urban SD + coastal · Asian/White skew",
-    psychographics: "Trả tiền cho trải nghiệm yên tĩnh, sạch, sản phẩm ít độc; ít nhạy giá",
-    profile:
-      "Signature/Volcano/24K pedicure USD 60–120+; trigger stress, quà tặng, dịp đặc biệt.",
-    channel: "Yelp ảnh thật, website booking, referral spa/hotel",
-    barrier: "Kỳ vọng không gian sang trọng; cạnh tranh med-spa",
-    sourceIds: ["census-sd-county-2024", "gmi-nail-salon-2025"],
-  },
-  {
-    name: "Nam giới & khách đa giới",
-    tag: "MỚI",
-    tagColor: "#6A1B9A",
-    pct: "8–12%",
-    sizeMarket: "Đang tăng toàn CA",
-    demographics: "Nam 20–45 · SD city · đa sắc tộc · single/married đều có",
-    psychographics: "Pedicure thể thao, manicure cơ bản; e ngại salon 'chỉ cho nữ' lần đầu",
-    profile:
-      "Basic manicure ~USD 20–25; trigger sức khỏe chân, sự kiện xã hội, partner referral.",
-    channel: "Google 'nail salon near me', referral bạn/partner",
-    barrier: "Cảm giác salon feminine; thiếu menu nam rõ ràng",
-    sourceIds: ["gmi-nail-salon-2025", "census-sd-city-2024"],
-  },
-];
-
-export const infoSources = [
-  {
-    rank: 1,
-    name: "Google Maps / Search",
-    importance: 5,
-    detail: "'Nail salon San Diego' / 'near me' — filter rating; 71% bỏ qua dưới 3★",
-    sourceIds: ["brightlocal-reviews-2024"],
-  },
-  {
-    rank: 2,
-    name: "Yelp",
-    importance: 4,
-    detail: "Review chi tiết SD East County; ảnh pedicure station quyết định thử salon mới",
-    sourceIds: ["brightlocal-reviews-2024"],
-  },
-  {
-    rank: 3,
-    name: "Giới thiệu trực tiếp",
-    importance: 4,
-    detail: "Bạn bè, đồng nghiệp, hàng xóm Santee — trust cao trước khi xem online",
-    sourceIds: ["gmi-nail-salon-2025"],
-  },
-  {
-    rank: 4,
-    name: "Facebook / Instagram",
-    importance: 4,
-    detail: "Group cộng đồng SD East; nail art Reels — Gen Z/Millennials SD",
-    sourceIds: ["gmi-nail-salon-2025", "nails-magazine-industry"],
-  },
-  {
-    rank: 5,
-    name: "Website / app đặt lịch",
-    importance: 4,
-    detail: "Menu giá minh bạch; ~46–50% booking ngoài giờ mở cửa",
-    sourceIds: ["blvd-salon-stats-2025"],
-  },
-  {
-    rank: 6,
-    name: "TikTok",
-    importance: 3,
-    detail: "Nail art viral, before/after — inspiration trước khi book tại SD",
-    sourceIds: ["gmi-nail-salon-2025"],
-  },
-];
+export { competitorMarkets, consumerMarkets };
 
 export const journeyStages = [
   {
