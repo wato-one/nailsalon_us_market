@@ -207,19 +207,86 @@ const compareGridStyle = {
   display: "grid",
   gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
   gap: "20px",
-  alignItems: "start",
+  alignItems: "stretch",
 };
 
 const compareColumnStyle = {
   minWidth: 0,
+  display: "flex",
+  flexDirection: "column",
 };
 
-function CompareTwoColumns({ left, right }) {
+const compareCellStyle = {
+  height: "100%",
+  flex: 1,
+  display: "flex",
+  flexDirection: "column",
+};
+
+const equalHeightCardStyle = {
+  ...cardStyle,
+  height: "100%",
+  marginBottom: 0,
+  boxSizing: "border-box",
+  display: "flex",
+  flexDirection: "column",
+};
+
+const journeyCellStyle = {
+  padding: "12px",
+  background: theme.colors.white,
+  borderRadius: theme.radius.sm,
+  fontSize: "13px",
+  lineHeight: 1.65,
+  border: `1px solid ${theme.colors.lineSoft}`,
+  height: "100%",
+  boxSizing: "border-box",
+  flex: 1,
+};
+
+function CompareTwoColumns({ left, right, style }) {
   return (
-    <div style={compareGridStyle}>
-      <div style={compareColumnStyle}>{left}</div>
-      <div style={compareColumnStyle}>{right}</div>
+    <div style={{ ...compareGridStyle, marginBottom: "12px", ...style }}>
+      <div style={compareColumnStyle}>
+        <div style={compareCellStyle}>{left}</div>
+      </div>
+      <div style={compareColumnStyle}>
+        <div style={compareCellStyle}>{right}</div>
+      </div>
     </div>
+  );
+}
+
+function ComparePlaceholder() {
+  return (
+    <div
+      style={{
+        ...equalHeightCardStyle,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        color: theme.colors.muted,
+        fontSize: "13px",
+        opacity: 0.4,
+      }}
+    >
+      —
+    </div>
+  );
+}
+
+function ComparePairedRows({ leftItems = [], rightItems = [], renderLeft, renderRight, getKey }) {
+  const count = Math.max(leftItems.length, rightItems.length);
+  return (
+    <>
+      {Array.from({ length: count }, (_, i) => (
+        <CompareTwoColumns
+          key={getKey ? getKey(leftItems[i], rightItems[i], i) : i}
+          left={leftItems[i] ? renderLeft(leftItems[i], i) : <ComparePlaceholder />}
+          right={rightItems[i] ? renderRight(rightItems[i], i) : <ComparePlaceholder />}
+        />
+      ))}
+    </>
   );
 }
 
@@ -256,7 +323,7 @@ function CompareSubheading({ title }) {
 
 function CompetitorCard({ c, marketId }) {
   return (
-    <div key={`${marketId}-${c.name}`} style={{ ...cardStyle, marginBottom: "12px" }}>
+    <div style={{ ...equalHeightCardStyle, padding: "24px" }}>
       <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "8px", marginBottom: "12px" }}>
         <div>
           <h4 style={{ margin: "0 0 4px", fontSize: "16px" }}>{c.name}</h4>
@@ -274,7 +341,7 @@ function CompetitorCard({ c, marketId }) {
           )}
         </div>
       </div>
-      <div style={{ fontSize: "13px" }}>
+      <div style={{ fontSize: "13px", flex: 1 }}>
         <div style={{ marginBottom: "8px" }}>
           <strong style={{ color: "#2E7D32" }}>Điểm mạnh</strong>
           <p style={{ margin: "4px 0 0", color: theme.colors.muted, lineHeight: 1.55 }}>{c.strengths}</p>
@@ -293,92 +360,76 @@ function CompetitorCard({ c, marketId }) {
   );
 }
 
-function DemographicsColumn({ market }) {
+function DemographicCard({ row, marketId }) {
   return (
-    <div>
-      {market.demographics.map((row) => (
-        <div key={`${market.marketId}-${row.category}-${row.metric}`} style={{ ...cardStyle, marginBottom: "12px", padding: "14px" }}>
-          <div style={{ fontSize: "11px", fontWeight: 700, color: theme.colors.accent, letterSpacing: "0.04em" }}>{row.category}</div>
-          <div style={{ fontSize: "20px", fontWeight: 700, color: theme.colors.ink, margin: "4px 0" }}>{row.metric}</div>
-          <div style={{ fontSize: "13px", fontWeight: 600, marginBottom: "6px" }}>{row.value}</div>
-          <p style={{ fontSize: "12px", lineHeight: 1.55, color: theme.colors.muted, margin: 0 }}>
-            {row.detail}
-            <SourceRefs ids={row.sourceIds} />
-          </p>
-        </div>
-      ))}
+    <div style={{ ...equalHeightCardStyle, padding: "14px" }}>
+      <div style={{ fontSize: "11px", fontWeight: 700, color: theme.colors.accent, letterSpacing: "0.04em" }}>{row.category}</div>
+      <div style={{ fontSize: "20px", fontWeight: 700, color: theme.colors.ink, margin: "4px 0" }}>{row.metric}</div>
+      <div style={{ fontSize: "13px", fontWeight: 600, marginBottom: "6px" }}>{row.value}</div>
+      <p style={{ fontSize: "12px", lineHeight: 1.55, color: theme.colors.muted, margin: 0, flex: 1 }}>
+        {row.detail}
+        <SourceRefs ids={row.sourceIds} />
+      </p>
     </div>
   );
 }
 
-function PsychographicsColumn({ market }) {
+function PsychographicCard({ item, marketId }) {
   return (
-    <div>
-      {market.psychographics.map((item) => (
-        <div key={`${market.marketId}-${item.headline}`} style={{ ...cardStyle, marginBottom: "12px", padding: "14px" }}>
-          <div style={{ marginBottom: "6px" }}>
-            {item.impact && <Badge type={item.impact} />}
-            <strong style={{ fontSize: "14px" }}>{item.headline}</strong>
-          </div>
-          <p style={{ margin: 0, fontSize: "13px", lineHeight: 1.6, color: theme.colors.muted }}>
-            {item.detail}
-            <SourceRefs ids={item.sourceIds} />
-          </p>
-        </div>
-      ))}
+    <div style={{ ...equalHeightCardStyle, padding: "14px" }}>
+      <div style={{ marginBottom: "6px" }}>
+        {item.impact && <Badge type={item.impact} />}
+        <strong style={{ fontSize: "14px" }}>{item.headline}</strong>
+      </div>
+      <p style={{ margin: 0, fontSize: "13px", lineHeight: 1.6, color: theme.colors.muted, flex: 1 }}>
+        {item.detail}
+        <SourceRefs ids={item.sourceIds} />
+      </p>
     </div>
   );
 }
 
-function SegmentsColumn({ market }) {
+function SegmentCard({ seg, marketId }) {
   return (
-    <div>
-      {market.segments.map((seg) => (
-        <div key={`${market.marketId}-${seg.name}`} style={{ ...cardStyle, marginBottom: "12px", padding: "14px" }}>
-          <span style={{ fontSize: "10px", fontWeight: 700, color: "#fff", background: seg.tagColor, padding: "3px 8px", borderRadius: theme.radius.sm }}>{seg.tag}</span>
-          <h5 style={{ margin: "10px 0 4px", fontSize: "15px" }}>{seg.name}</h5>
-          <div style={{ fontSize: "20px", fontWeight: 700, color: theme.colors.accentDeep }}>{seg.pct}</div>
-          <div style={{ fontSize: "12px", color: theme.colors.muted, marginBottom: "10px" }}>{seg.sizeMarket}</div>
-          <p style={{ fontSize: "12px", lineHeight: 1.55, color: theme.colors.muted, margin: "0 0 6px" }}>
-            <strong>{consumerLabels.segmentProfile}:</strong> {seg.profile}
-          </p>
-          <p style={{ fontSize: "12px", lineHeight: 1.55, color: theme.colors.muted, margin: "0 0 6px" }}>
-            <strong>{consumerLabels.segmentMindset}:</strong> {seg.psychographics}
-          </p>
-          <p style={{ fontSize: "12px", color: theme.colors.muted, margin: "4px 0" }}>
-            <strong>{consumerLabels.segmentChannel}:</strong> {seg.channel}
-          </p>
-          <p style={{ fontSize: "12px", color: theme.colors.muted, margin: "4px 0" }}>
-            <strong>{consumerLabels.segmentBarrier}:</strong> {seg.barrier}
-          </p>
-          {seg.sourceIds && (
-            <div style={{ marginTop: "6px" }}>
-              <SourceRefs ids={seg.sourceIds} />
-            </div>
-          )}
+    <div style={{ ...equalHeightCardStyle, padding: "14px" }}>
+      <span style={{ fontSize: "10px", fontWeight: 700, color: "#fff", background: seg.tagColor, padding: "3px 8px", borderRadius: theme.radius.sm }}>{seg.tag}</span>
+      <h5 style={{ margin: "10px 0 4px", fontSize: "15px" }}>{seg.name}</h5>
+      <div style={{ fontSize: "20px", fontWeight: 700, color: theme.colors.accentDeep }}>{seg.pct}</div>
+      <div style={{ fontSize: "12px", color: theme.colors.muted, marginBottom: "10px" }}>{seg.sizeMarket}</div>
+      <p style={{ fontSize: "12px", lineHeight: 1.55, color: theme.colors.muted, margin: "0 0 6px" }}>
+        <strong>{consumerLabels.segmentProfile}:</strong> {seg.profile}
+      </p>
+      <p style={{ fontSize: "12px", lineHeight: 1.55, color: theme.colors.muted, margin: "0 0 6px" }}>
+        <strong>{consumerLabels.segmentMindset}:</strong> {seg.psychographics}
+      </p>
+      <p style={{ fontSize: "12px", color: theme.colors.muted, margin: "4px 0" }}>
+        <strong>{consumerLabels.segmentChannel}:</strong> {seg.channel}
+      </p>
+      <p style={{ fontSize: "12px", color: theme.colors.muted, margin: "4px 0", flex: 1 }}>
+        <strong>{consumerLabels.segmentBarrier}:</strong> {seg.barrier}
+      </p>
+      {seg.sourceIds && (
+        <div style={{ marginTop: "6px" }}>
+          <SourceRefs ids={seg.sourceIds} />
         </div>
-      ))}
+      )}
     </div>
   );
 }
 
-function InfoSourcesColumn({ market }) {
+function InfoSourceCard({ row, marketId }) {
   return (
-    <div>
-      <ol style={{ margin: 0, paddingLeft: "20px" }}>
-        {market.infoSources.map((row) => (
-          <li key={`${market.marketId}-${row.rank}`} style={{ marginBottom: "12px", fontSize: "13px", lineHeight: 1.55 }}>
-            <strong>{row.name}</strong>
-            <span style={{ marginLeft: "6px", color: theme.colors.muted }}>
-              ({THREAT_LABELS[row.importance] || row.importance})
-            </span>
-            <p style={{ margin: "4px 0 0", color: theme.colors.muted }}>
-              {row.detail}
-              <SourceRefs ids={row.sourceIds} />
-            </p>
-          </li>
-        ))}
-      </ol>
+    <div style={{ ...equalHeightCardStyle, padding: "14px" }}>
+      <div style={{ fontSize: "13px", lineHeight: 1.55 }}>
+        <strong>{row.name}</strong>
+        <span style={{ marginLeft: "6px", color: theme.colors.muted }}>
+          ({THREAT_LABELS[row.importance] || row.importance})
+        </span>
+        <p style={{ margin: "8px 0 0", color: theme.colors.muted, flex: 1 }}>
+          {row.detail}
+          <SourceRefs ids={row.sourceIds} />
+        </p>
+      </div>
     </div>
   );
 }
@@ -653,21 +704,22 @@ export default function App() {
           <CompareColumnHeaders />
           <CompareTwoColumns
             left={
-              <>
-                <p style={{ fontSize: "13px", color: theme.colors.muted, marginBottom: "12px", lineHeight: 1.6 }}>{caCompetitors?.intro}</p>
-                {caCompetitors?.competitors.map((c) => (
-                  <CompetitorCard key={`california-${c.name}`} c={c} marketId="california" />
-                ))}
-              </>
+              <div style={{ ...equalHeightCardStyle, padding: "16px" }}>
+                <p style={{ fontSize: "13px", color: theme.colors.muted, margin: 0, lineHeight: 1.6 }}>{caCompetitors?.intro}</p>
+              </div>
             }
             right={
-              <>
-                <p style={{ fontSize: "13px", color: theme.colors.muted, marginBottom: "12px", lineHeight: 1.6 }}>{sdCompetitors?.intro}</p>
-                {sdCompetitors?.competitors.map((c) => (
-                  <CompetitorCard key={`san-diego-${c.name}`} c={c} marketId="san-diego" />
-                ))}
-              </>
+              <div style={{ ...equalHeightCardStyle, padding: "16px" }}>
+                <p style={{ fontSize: "13px", color: theme.colors.muted, margin: 0, lineHeight: 1.6 }}>{sdCompetitors?.intro}</p>
+              </div>
             }
+          />
+          <ComparePairedRows
+            leftItems={caCompetitors?.competitors || []}
+            rightItems={sdCompetitors?.competitors || []}
+            getKey={(l, r, i) => `comp-${i}-${l?.name || r?.name}`}
+            renderLeft={(c) => <CompetitorCard c={c} marketId="california" />}
+            renderRight={(c) => <CompetitorCard c={c} marketId="san-diego" />}
           />
         </section>
 
@@ -677,27 +729,39 @@ export default function App() {
           <CompareColumnHeaders />
 
           <CompareSubheading title={consumerLabels.demographicsTitle} />
-          <CompareTwoColumns
-            left={caConsumer && <DemographicsColumn market={caConsumer} />}
-            right={sdConsumer && <DemographicsColumn market={sdConsumer} />}
+          <ComparePairedRows
+            leftItems={caConsumer?.demographics || []}
+            rightItems={sdConsumer?.demographics || []}
+            getKey={(l, r, i) => `demo-${i}-${l?.category || r?.category}`}
+            renderLeft={(row) => <DemographicCard row={row} marketId="california" />}
+            renderRight={(row) => <DemographicCard row={row} marketId="san-diego" />}
           />
 
           <CompareSubheading title={consumerLabels.psychographicsTitle} />
-          <CompareTwoColumns
-            left={caConsumer && <PsychographicsColumn market={caConsumer} />}
-            right={sdConsumer && <PsychographicsColumn market={sdConsumer} />}
+          <ComparePairedRows
+            leftItems={caConsumer?.psychographics || []}
+            rightItems={sdConsumer?.psychographics || []}
+            getKey={(l, r, i) => `psycho-${i}-${l?.headline || r?.headline}`}
+            renderLeft={(item) => <PsychographicCard item={item} marketId="california" />}
+            renderRight={(item) => <PsychographicCard item={item} marketId="san-diego" />}
           />
 
           <CompareSubheading title={consumerLabels.segmentsTitle} />
-          <CompareTwoColumns
-            left={caConsumer && <SegmentsColumn market={caConsumer} />}
-            right={sdConsumer && <SegmentsColumn market={sdConsumer} />}
+          <ComparePairedRows
+            leftItems={caConsumer?.segments || []}
+            rightItems={sdConsumer?.segments || []}
+            getKey={(l, r, i) => `seg-${i}-${l?.name || r?.name}`}
+            renderLeft={(seg) => <SegmentCard seg={seg} marketId="california" />}
+            renderRight={(seg) => <SegmentCard seg={seg} marketId="san-diego" />}
           />
 
           <CompareSubheading title={consumerLabels.infoSourcesTitle} />
-          <CompareTwoColumns
-            left={caConsumer && <InfoSourcesColumn market={caConsumer} />}
-            right={sdConsumer && <InfoSourcesColumn market={sdConsumer} />}
+          <ComparePairedRows
+            leftItems={caConsumer?.infoSources || []}
+            rightItems={sdConsumer?.infoSources || []}
+            getKey={(l, r, i) => `info-${i}-${l?.rank || r?.rank}`}
+            renderLeft={(row) => <InfoSourceCard row={row} marketId="california" />}
+            renderRight={(row) => <InfoSourceCard row={row} marketId="san-diego" />}
           />
         </section>
 
@@ -720,34 +784,8 @@ export default function App() {
                 </div>
               </div>
               <CompareTwoColumns
-                left={
-                  <div
-                    style={{
-                      padding: "12px",
-                      background: theme.colors.white,
-                      borderRadius: theme.radius.sm,
-                      fontSize: "13px",
-                      lineHeight: 1.65,
-                      border: `1px solid ${theme.colors.lineSoft}`,
-                    }}
-                  >
-                    {stage.california}
-                  </div>
-                }
-                right={
-                  <div
-                    style={{
-                      padding: "12px",
-                      background: theme.colors.white,
-                      borderRadius: theme.radius.sm,
-                      fontSize: "13px",
-                      lineHeight: 1.65,
-                      border: `1px solid ${theme.colors.lineSoft}`,
-                    }}
-                  >
-                    {stage.sanDiego}
-                  </div>
-                }
+                left={<div style={journeyCellStyle}>{stage.california}</div>}
+                right={<div style={journeyCellStyle}>{stage.sanDiego}</div>}
               />
               <div style={{ marginTop: "10px" }}>
                 <SourceRefs ids={stage.sourceIds} />
