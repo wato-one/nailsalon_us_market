@@ -18,7 +18,6 @@ import {
   consumerLabels,
   consumerDemographics,
   consumerPsychographics,
-  consumerMediaBehavior,
   journeyStages,
   strategyData,
   sectionHints,
@@ -547,40 +546,6 @@ export default function App() {
             </div>
           ))}
 
-          <h3 style={{ fontSize: "18px", margin: "32px 0 8px" }}>{consumerLabels.mediaTitle}</h3>
-          <p style={{ fontSize: "13px", color: theme.colors.muted, marginBottom: "16px", lineHeight: 1.6 }}>
-            {consumerLabels.mediaIntro}
-          </p>
-          <div style={{ overflowX: "auto", marginBottom: "32px" }}>
-            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "13px" }}>
-              <thead>
-                <tr style={{ background: theme.colors.bgAlt }}>
-                  <th style={{ padding: "10px", textAlign: "left", borderBottom: `1px solid ${theme.colors.line}` }}>Nền tảng</th>
-                  <th style={{ padding: "10px", textAlign: "left", borderBottom: `1px solid ${theme.colors.line}` }}>Vai trò</th>
-                  <th style={{ padding: "10px", textAlign: "left", borderBottom: `1px solid ${theme.colors.line}` }}>Hành vi</th>
-                  <th style={{ padding: "10px", textAlign: "left", borderBottom: `1px solid ${theme.colors.line}` }}>Quan trọng</th>
-                  <th style={{ padding: "10px", textAlign: "left", borderBottom: `1px solid ${theme.colors.line}` }}>Chi tiết</th>
-                </tr>
-              </thead>
-              <tbody>
-                {consumerMediaBehavior.map((row) => (
-                  <tr key={row.platform}>
-                    <td style={{ padding: "10px", borderBottom: `1px solid ${theme.colors.lineSoft}`, fontWeight: 600 }}>{row.platform}</td>
-                    <td style={{ padding: "10px", borderBottom: `1px solid ${theme.colors.lineSoft}`, color: theme.colors.muted }}>{row.role}</td>
-                    <td style={{ padding: "10px", borderBottom: `1px solid ${theme.colors.lineSoft}`, color: theme.colors.muted }}>{row.behavior}</td>
-                    <td style={{ padding: "10px", borderBottom: `1px solid ${theme.colors.lineSoft}` }}>
-                      <ThreatDots level={row.importance} />
-                    </td>
-                    <td style={{ padding: "10px", borderBottom: `1px solid ${theme.colors.lineSoft}`, color: theme.colors.muted }}>
-                      {row.detail}
-                      <SourceRefs ids={row.sourceIds} />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
           <h3 style={{ fontSize: "18px", marginBottom: "12px" }}>{consumerLabels.segmentsTitle}</h3>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "16px", marginBottom: "32px" }}>
             {segments.map((seg) => (
@@ -592,11 +557,8 @@ export default function App() {
                 <p style={{ fontSize: "12px", lineHeight: 1.55, color: theme.colors.muted, margin: "0 0 6px" }}>
                   <strong>Demographic:</strong> {seg.demographics}
                 </p>
-                <p style={{ fontSize: "12px", lineHeight: 1.55, color: theme.colors.muted, margin: "0 0 6px" }}>
-                  <strong>Psychographic:</strong> {seg.psychographics}
-                </p>
                 <p style={{ fontSize: "12px", lineHeight: 1.55, color: theme.colors.muted, margin: "0 0 8px" }}>
-                  <strong>Media:</strong> {seg.media}
+                  <strong>Psychographic:</strong> {seg.psychographics}
                 </p>
                 <p style={{ fontSize: "13px", lineHeight: 1.55, color: theme.colors.muted, margin: "0 0 8px" }}>
                   <strong>Hồ sơ:</strong> {seg.profile}
