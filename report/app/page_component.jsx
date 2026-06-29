@@ -15,7 +15,7 @@ import {
   competitorMarkets,
   consumerMarkets,
   consumerLabels,
-  journeyStages,
+  journeyCompare,
   strategyData,
   sectionHints,
 } from "./report-content-vi";
@@ -195,6 +195,194 @@ function ThreatDots({ level }) {
   );
 }
 
+const THREAT_LABELS = {
+  5: "Rất cao",
+  4: "Cao",
+  3: "Trung bình",
+  2: "Thấp",
+  1: "Rất thấp",
+};
+
+const compareGridStyle = {
+  display: "grid",
+  gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+  gap: "20px",
+  alignItems: "start",
+};
+
+const compareColumnStyle = {
+  minWidth: 0,
+};
+
+function CompareTwoColumns({ left, right }) {
+  return (
+    <div style={compareGridStyle}>
+      <div style={compareColumnStyle}>{left}</div>
+      <div style={compareColumnStyle}>{right}</div>
+    </div>
+  );
+}
+
+function CompareColumnHeaders() {
+  return (
+    <div
+      style={{
+        ...compareGridStyle,
+        marginBottom: "16px",
+        paddingBottom: "10px",
+        borderBottom: `2px solid ${theme.colors.line}`,
+      }}
+    >
+      <div style={{ fontWeight: 700, fontSize: "18px", color: theme.colors.accent }}>California</div>
+      <div style={{ fontWeight: 700, fontSize: "18px", color: theme.colors.accent }}>San Diego</div>
+    </div>
+  );
+}
+
+function CompareSubheading({ title }) {
+  return (
+    <h4
+      style={{
+        fontSize: "18px",
+        margin: "32px 0 12px",
+        paddingTop: "8px",
+        borderTop: `1px solid ${theme.colors.lineSoft}`,
+      }}
+    >
+      {title}
+    </h4>
+  );
+}
+
+function CompetitorCard({ c, marketId }) {
+  return (
+    <div key={`${marketId}-${c.name}`} style={{ ...cardStyle, marginBottom: "12px" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "8px", marginBottom: "12px" }}>
+        <div>
+          <h4 style={{ margin: "0 0 4px", fontSize: "16px" }}>{c.name}</h4>
+          <span style={{ fontSize: "12px", padding: "2px 8px", background: theme.colors.bgAlt, borderRadius: theme.radius.sm }}>{c.type}</span>
+        </div>
+        <div style={{ textAlign: "right" }}>
+          <div style={{ fontSize: "13px", fontWeight: 600 }}>{c.rating}</div>
+          {c.threat > 0 && (
+            <div style={{ fontSize: "12px", color: theme.colors.muted, marginTop: "4px" }}>
+              Mức cạnh tranh: {THREAT_LABELS[c.threat] || c.threat}
+              <span style={{ marginLeft: "6px" }}>
+                <ThreatDots level={c.threat} />
+              </span>
+            </div>
+          )}
+        </div>
+      </div>
+      <div style={{ fontSize: "13px" }}>
+        <div style={{ marginBottom: "8px" }}>
+          <strong style={{ color: "#2E7D32" }}>Điểm mạnh</strong>
+          <p style={{ margin: "4px 0 0", color: theme.colors.muted, lineHeight: 1.55 }}>{c.strengths}</p>
+        </div>
+        <div>
+          <strong style={{ color: "#C62828" }}>Điểm yếu</strong>
+          <p style={{ margin: "4px 0 0", color: theme.colors.muted, lineHeight: 1.55 }}>{c.weaknesses}</p>
+        </div>
+      </div>
+      {c.sourceIds && (
+        <div style={{ marginTop: "8px" }}>
+          <SourceRefs ids={c.sourceIds} />
+        </div>
+      )}
+    </div>
+  );
+}
+
+function DemographicsColumn({ market }) {
+  return (
+    <div>
+      {market.demographics.map((row) => (
+        <div key={`${market.marketId}-${row.category}-${row.metric}`} style={{ ...cardStyle, marginBottom: "12px", padding: "14px" }}>
+          <div style={{ fontSize: "11px", fontWeight: 700, color: theme.colors.accent, letterSpacing: "0.04em" }}>{row.category}</div>
+          <div style={{ fontSize: "20px", fontWeight: 700, color: theme.colors.ink, margin: "4px 0" }}>{row.metric}</div>
+          <div style={{ fontSize: "13px", fontWeight: 600, marginBottom: "6px" }}>{row.value}</div>
+          <p style={{ fontSize: "12px", lineHeight: 1.55, color: theme.colors.muted, margin: 0 }}>
+            {row.detail}
+            <SourceRefs ids={row.sourceIds} />
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function PsychographicsColumn({ market }) {
+  return (
+    <div>
+      {market.psychographics.map((item) => (
+        <div key={`${market.marketId}-${item.headline}`} style={{ ...cardStyle, marginBottom: "12px", padding: "14px" }}>
+          <div style={{ marginBottom: "6px" }}>
+            {item.impact && <Badge type={item.impact} />}
+            <strong style={{ fontSize: "14px" }}>{item.headline}</strong>
+          </div>
+          <p style={{ margin: 0, fontSize: "13px", lineHeight: 1.6, color: theme.colors.muted }}>
+            {item.detail}
+            <SourceRefs ids={item.sourceIds} />
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function SegmentsColumn({ market }) {
+  return (
+    <div>
+      {market.segments.map((seg) => (
+        <div key={`${market.marketId}-${seg.name}`} style={{ ...cardStyle, marginBottom: "12px", padding: "14px" }}>
+          <span style={{ fontSize: "10px", fontWeight: 700, color: "#fff", background: seg.tagColor, padding: "3px 8px", borderRadius: theme.radius.sm }}>{seg.tag}</span>
+          <h5 style={{ margin: "10px 0 4px", fontSize: "15px" }}>{seg.name}</h5>
+          <div style={{ fontSize: "20px", fontWeight: 700, color: theme.colors.accentDeep }}>{seg.pct}</div>
+          <div style={{ fontSize: "12px", color: theme.colors.muted, marginBottom: "10px" }}>{seg.sizeMarket}</div>
+          <p style={{ fontSize: "12px", lineHeight: 1.55, color: theme.colors.muted, margin: "0 0 6px" }}>
+            <strong>{consumerLabels.segmentProfile}:</strong> {seg.profile}
+          </p>
+          <p style={{ fontSize: "12px", lineHeight: 1.55, color: theme.colors.muted, margin: "0 0 6px" }}>
+            <strong>{consumerLabels.segmentMindset}:</strong> {seg.psychographics}
+          </p>
+          <p style={{ fontSize: "12px", color: theme.colors.muted, margin: "4px 0" }}>
+            <strong>{consumerLabels.segmentChannel}:</strong> {seg.channel}
+          </p>
+          <p style={{ fontSize: "12px", color: theme.colors.muted, margin: "4px 0" }}>
+            <strong>{consumerLabels.segmentBarrier}:</strong> {seg.barrier}
+          </p>
+          {seg.sourceIds && (
+            <div style={{ marginTop: "6px" }}>
+              <SourceRefs ids={seg.sourceIds} />
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function InfoSourcesColumn({ market }) {
+  return (
+    <div>
+      <ol style={{ margin: 0, paddingLeft: "20px" }}>
+        {market.infoSources.map((row) => (
+          <li key={`${market.marketId}-${row.rank}`} style={{ marginBottom: "12px", fontSize: "13px", lineHeight: 1.55 }}>
+            <strong>{row.name}</strong>
+            <span style={{ marginLeft: "6px", color: theme.colors.muted }}>
+              ({THREAT_LABELS[row.importance] || row.importance})
+            </span>
+            <p style={{ margin: "4px 0 0", color: theme.colors.muted }}>
+              {row.detail}
+              <SourceRefs ids={row.sourceIds} />
+            </p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
+
 function TermGlossary({ terms }) {
   return (
     <div style={{ display: "grid", gap: "12px" }}>
@@ -217,6 +405,10 @@ function TermGlossary({ terms }) {
 
 export default function App() {
   const [activeSection, setActiveSection] = useState("overview");
+  const caCompetitors = competitorMarkets.find((m) => m.marketId === "california");
+  const sdCompetitors = competitorMarkets.find((m) => m.marketId === "san-diego");
+  const caConsumer = consumerMarkets.find((m) => m.marketId === "california");
+  const sdConsumer = consumerMarkets.find((m) => m.marketId === "san-diego");
 
   useEffect(() => {
     const link = document.createElement("link");
@@ -458,174 +650,55 @@ export default function App() {
         <section id="competitors" style={sectionStyle}>
           <h2 style={{ fontFamily: theme.fonts.display, fontSize: "28px", marginBottom: "8px" }}>Bản đồ đối thủ</h2>
           <p style={{ color: theme.colors.muted, marginBottom: "20px" }}>{sectionIntros.competitors}</p>
-          <SectionTermHint terms={sectionHints.competitors} />
-          {competitorMarkets.map((market) => (
-            <div key={market.marketId} style={{ marginBottom: "36px" }}>
-              <h3
-                style={{
-                  fontSize: "20px",
-                  marginBottom: "8px",
-                  paddingBottom: "8px",
-                  borderBottom: `2px solid ${theme.colors.accent}`,
-                }}
-              >
-                {market.label}
-              </h3>
-              <p style={{ fontSize: "13px", color: theme.colors.muted, marginBottom: "16px", lineHeight: 1.6 }}>{market.intro}</p>
-              {market.competitors.map((c) => (
-                <div key={`${market.marketId}-${c.name}`} style={cardStyle}>
-                  <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "8px", marginBottom: "12px" }}>
-                    <div>
-                      <h4 style={{ margin: "0 0 4px", fontSize: "17px" }}>{c.name}</h4>
-                      <span style={{ fontSize: "12px", padding: "2px 8px", background: theme.colors.bgAlt, borderRadius: theme.radius.sm }}>{c.type}</span>
-                    </div>
-                    <div style={{ textAlign: "right" }}>
-                      <div style={{ fontSize: "14px", fontWeight: 600 }}>{c.rating}</div>
-                      {c.threat > 0 && (
-                        <div style={{ fontSize: "12px", color: theme.colors.muted, marginTop: "4px" }}>
-                          Đe dọa: <ThreatDots level={c.threat} />
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "12px", fontSize: "13px" }}>
-                    <div>
-                      <strong style={{ color: "#2E7D32" }}>Điểm mạnh</strong>
-                      <p style={{ margin: "6px 0 0", color: theme.colors.muted, lineHeight: 1.55 }}>{c.strengths}</p>
-                    </div>
-                    <div>
-                      <strong style={{ color: "#C62828" }}>Điểm yếu</strong>
-                      <p style={{ margin: "6px 0 0", color: theme.colors.muted, lineHeight: 1.55 }}>{c.weaknesses}</p>
-                    </div>
-                  </div>
-                  {c.sourceIds && (
-                    <div style={{ marginTop: "10px" }}>
-                      <SourceRefs ids={c.sourceIds} />
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          ))}
+          <CompareColumnHeaders />
+          <CompareTwoColumns
+            left={
+              <>
+                <p style={{ fontSize: "13px", color: theme.colors.muted, marginBottom: "12px", lineHeight: 1.6 }}>{caCompetitors?.intro}</p>
+                {caCompetitors?.competitors.map((c) => (
+                  <CompetitorCard key={`california-${c.name}`} c={c} marketId="california" />
+                ))}
+              </>
+            }
+            right={
+              <>
+                <p style={{ fontSize: "13px", color: theme.colors.muted, marginBottom: "12px", lineHeight: 1.6 }}>{sdCompetitors?.intro}</p>
+                {sdCompetitors?.competitors.map((c) => (
+                  <CompetitorCard key={`san-diego-${c.name}`} c={c} marketId="san-diego" />
+                ))}
+              </>
+            }
+          />
         </section>
 
         <section id="consumer" style={sectionStyle}>
           <h2 style={{ fontFamily: theme.fonts.display, fontSize: "28px", marginBottom: "8px" }}>Khách hàng mục tiêu</h2>
           <p style={{ color: theme.colors.muted, marginBottom: "20px" }}>{sectionIntros.consumer}</p>
-          <SectionTermHint terms={sectionHints.consumer} />
+          <CompareColumnHeaders />
 
-          {consumerMarkets.map((market) => (
-            <div key={market.marketId} style={{ marginBottom: "40px" }}>
-              <h3
-                style={{
-                  fontSize: "20px",
-                  marginBottom: "20px",
-                  paddingBottom: "8px",
-                  borderBottom: `2px solid ${theme.colors.accent}`,
-                }}
-              >
-                {market.label}
-              </h3>
+          <CompareSubheading title={consumerLabels.demographicsTitle} />
+          <CompareTwoColumns
+            left={caConsumer && <DemographicsColumn market={caConsumer} />}
+            right={sdConsumer && <DemographicsColumn market={sdConsumer} />}
+          />
 
-              <h4 style={{ fontSize: "18px", marginBottom: "12px" }}>{consumerLabels.demographicsTitle}</h4>
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
-                  gap: "12px",
-                  marginBottom: "28px",
-                }}
-              >
-                {market.demographics.map((row) => (
-                  <div key={`${market.marketId}-${row.category}-${row.metric}`} style={{ ...cardStyle, marginBottom: 0, padding: "16px" }}>
-                    <div style={{ fontSize: "11px", fontWeight: 700, color: theme.colors.accent, letterSpacing: "0.04em" }}>
-                      {row.category}
-                    </div>
-                    <div style={{ fontSize: "22px", fontWeight: 700, color: theme.colors.ink, margin: "4px 0" }}>{row.metric}</div>
-                    <div style={{ fontSize: "13px", fontWeight: 600, marginBottom: "6px" }}>{row.value}</div>
-                    <p style={{ fontSize: "12px", lineHeight: 1.55, color: theme.colors.muted, margin: 0 }}>
-                      {row.detail}
-                      <SourceRefs ids={row.sourceIds} />
-                    </p>
-                  </div>
-                ))}
-              </div>
+          <CompareSubheading title={consumerLabels.psychographicsTitle} />
+          <CompareTwoColumns
+            left={caConsumer && <PsychographicsColumn market={caConsumer} />}
+            right={sdConsumer && <PsychographicsColumn market={sdConsumer} />}
+          />
 
-              <h4 style={{ fontSize: "18px", marginBottom: "12px" }}>{consumerLabels.psychographicsTitle}</h4>
-              {market.psychographics.map((item) => (
-                <div key={`${market.marketId}-${item.headline}`} style={cardStyle}>
-                  <div style={{ marginBottom: "6px" }}>
-                    {item.impact && <Badge type={item.impact} />}
-                    <strong style={{ fontSize: "15px" }}>{item.headline}</strong>
-                  </div>
-                  <p style={{ margin: 0, fontSize: "14px", lineHeight: 1.65, color: theme.colors.muted }}>
-                    {item.detail}
-                    <SourceRefs ids={item.sourceIds} />
-                  </p>
-                </div>
-              ))}
+          <CompareSubheading title={consumerLabels.segmentsTitle} />
+          <CompareTwoColumns
+            left={caConsumer && <SegmentsColumn market={caConsumer} />}
+            right={sdConsumer && <SegmentsColumn market={sdConsumer} />}
+          />
 
-              <h4 style={{ fontSize: "18px", margin: "28px 0 12px" }}>{consumerLabels.segmentsTitle}</h4>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "16px", marginBottom: "28px" }}>
-                {market.segments.map((seg) => (
-                  <div key={`${market.marketId}-${seg.name}`} style={cardStyle}>
-                    <span style={{ fontSize: "10px", fontWeight: 700, color: "#fff", background: seg.tagColor, padding: "3px 8px", borderRadius: theme.radius.sm }}>{seg.tag}</span>
-                    <h5 style={{ margin: "10px 0 4px", fontSize: "16px" }}>{seg.name}</h5>
-                    <div style={{ fontSize: "22px", fontWeight: 700, color: theme.colors.accentDeep }}>{seg.pct}</div>
-                    <div style={{ fontSize: "12px", color: theme.colors.muted, marginBottom: "12px" }}>{seg.sizeMarket}</div>
-                    <p style={{ fontSize: "13px", lineHeight: 1.55, color: theme.colors.muted, margin: "0 0 8px" }}>
-                      <strong>Hồ sơ:</strong> {seg.profile}
-                    </p>
-                    <p style={{ fontSize: "12px", lineHeight: 1.55, color: theme.colors.muted, margin: "0 0 6px" }}>
-                      <strong>Psychographic:</strong> {seg.psychographics}
-                    </p>
-                    <p style={{ fontSize: "12px", color: theme.colors.muted, margin: "4px 0" }}>
-                      <strong>Kênh:</strong> {seg.channel}
-                    </p>
-                    <p style={{ fontSize: "12px", color: theme.colors.muted, margin: "4px 0" }}>
-                      <strong>Rào cản:</strong> {seg.barrier}
-                    </p>
-                    {seg.sourceIds && (
-                      <div style={{ marginTop: "8px" }}>
-                        <SourceRefs ids={seg.sourceIds} />
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-
-              <h4 style={{ fontSize: "18px", marginBottom: "12px" }}>
-                {consumerLabels.infoSourcesTitle} — {market.label}
-              </h4>
-              <div style={{ overflowX: "auto", marginBottom: "8px" }}>
-                <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "13px" }}>
-                  <thead>
-                    <tr style={{ background: theme.colors.bgAlt }}>
-                      <th style={{ padding: "10px", textAlign: "left", borderBottom: `1px solid ${theme.colors.line}` }}>#</th>
-                      <th style={{ padding: "10px", textAlign: "left", borderBottom: `1px solid ${theme.colors.line}` }}>Nguồn</th>
-                      <th style={{ padding: "10px", textAlign: "left", borderBottom: `1px solid ${theme.colors.line}` }}>Quan trọng</th>
-                      <th style={{ padding: "10px", textAlign: "left", borderBottom: `1px solid ${theme.colors.line}` }}>Chi tiết</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {market.infoSources.map((row) => (
-                      <tr key={`${market.marketId}-${row.rank}`}>
-                        <td style={{ padding: "10px", borderBottom: `1px solid ${theme.colors.lineSoft}`, fontFamily: theme.fonts.mono }}>{row.rank}</td>
-                        <td style={{ padding: "10px", borderBottom: `1px solid ${theme.colors.lineSoft}`, fontWeight: 600 }}>{row.name}</td>
-                        <td style={{ padding: "10px", borderBottom: `1px solid ${theme.colors.lineSoft}` }}>
-                          <ThreatDots level={row.importance} />
-                        </td>
-                        <td style={{ padding: "10px", borderBottom: `1px solid ${theme.colors.lineSoft}`, color: theme.colors.muted }}>
-                          {row.detail}
-                          <SourceRefs ids={row.sourceIds} />
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          ))}
+          <CompareSubheading title={consumerLabels.infoSourcesTitle} />
+          <CompareTwoColumns
+            left={caConsumer && <InfoSourcesColumn market={caConsumer} />}
+            right={sdConsumer && <InfoSourcesColumn market={sdConsumer} />}
+          />
         </section>
 
         <section id="journey" style={sectionStyle}>
@@ -633,39 +706,51 @@ export default function App() {
             Hành trình mua/Sử dụng sản phẩm dịch vụ
           </h2>
           <p style={{ color: theme.colors.muted, marginBottom: "20px" }}>{sectionIntros.journey}</p>
-          <SectionTermHint terms={sectionHints.journey} />
-          {journeyStages.map((stage) => (
-            <div key={stage.num} style={{ ...cardStyle, borderLeft: `4px solid ${stage.color}`, background: stage.bgColor }}>
-              <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", alignItems: "flex-start" }}>
-                <div style={{ fontSize: "32px" }}>{stage.icon}</div>
-                <div style={{ flex: 1, minWidth: "200px" }}>
+          <CompareColumnHeaders />
+          {journeyCompare.map((stage) => (
+            <div key={stage.num} style={{ ...cardStyle, borderLeft: `4px solid ${stage.color}`, background: stage.bgColor, marginBottom: "16px" }}>
+              <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", alignItems: "flex-start", marginBottom: "14px" }}>
+                <div style={{ fontSize: "28px" }}>{stage.icon}</div>
+                <div>
                   <div style={{ fontSize: "11px", fontWeight: 700, color: stage.color, letterSpacing: "0.08em" }}>
-                    GIAI ĐOẠN {stage.num} · {stage.duration}
+                    BƯỚC {stage.num} · {stage.duration}
                   </div>
-                  <h3 style={{ margin: "4px 0 2px", fontSize: "18px" }}>{stage.title}</h3>
-                  <div style={{ fontSize: "13px", color: theme.colors.muted, marginBottom: "12px" }}>{stage.subtitle}</div>
-                  {stage.triggers.map((t) => (
-                    <div key={t.label} style={{ fontSize: "13px", marginBottom: "4px" }}>
-                      <strong>{t.label}</strong>
-                      {t.pct ? <span style={{ color: theme.colors.muted }}> ({t.pct})</span> : null}
-                      <span style={{ color: theme.colors.muted }}> — {t.desc}</span>
-                    </div>
-                  ))}
+                  <h3 style={{ margin: "4px 0 2px", fontSize: "17px" }}>{stage.title}</h3>
+                  <div style={{ fontSize: "13px", color: theme.colors.muted }}>{stage.subtitle}</div>
+                </div>
+              </div>
+              <CompareTwoColumns
+                left={
                   <div
                     style={{
-                      marginTop: "14px",
                       padding: "12px",
                       background: theme.colors.white,
                       borderRadius: theme.radius.sm,
                       fontSize: "13px",
-                      lineHeight: 1.6,
+                      lineHeight: 1.65,
                       border: `1px solid ${theme.colors.lineSoft}`,
                     }}
                   >
-                    <strong style={{ color: theme.colors.accent }}>{stage.behaviorLabel}:</strong> {stage.industryBehavior}
-                    <SourceRefs ids={stage.sourceIds} />
+                    {stage.california}
                   </div>
-                </div>
+                }
+                right={
+                  <div
+                    style={{
+                      padding: "12px",
+                      background: theme.colors.white,
+                      borderRadius: theme.radius.sm,
+                      fontSize: "13px",
+                      lineHeight: 1.65,
+                      border: `1px solid ${theme.colors.lineSoft}`,
+                    }}
+                  >
+                    {stage.sanDiego}
+                  </div>
+                }
+              />
+              <div style={{ marginTop: "10px" }}>
+                <SourceRefs ids={stage.sourceIds} />
               </div>
             </div>
           ))}

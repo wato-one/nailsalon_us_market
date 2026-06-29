@@ -5,7 +5,7 @@ export const competitorMarkets = [
     marketId: "california",
     label: "California",
     intro:
-      "Bang có mật độ salon nail cao nhất nước, giám sát BBC chặt và đa dạng đô thị (LA, Bay Area, SD, Central Valley). Cạnh tranh chủ yếu giữa salon độc lập, chuỗi khu vực và franchise.",
+      "California có nhiều tiệm nail nhất nước. Luật vệ sinh chặt (BBC). Cạnh tranh chủ yếu giữa tiệm nhỏ, chuỗi vài điểm và tiệm trong siêu thị.",
     competitors: [
       {
         name: "Salon độc lập — toàn bang",
@@ -68,7 +68,7 @@ export const competitorMarkets = [
     marketId: "san-diego",
     label: "San Diego",
     intro:
-      "Thị trường quận ~3,3 triệu dân: đô thị San Diego, suburb East County (Santee, El Cajon), North County và căn cứ quân sự. Cạnh tranh hyper-local — Google/Yelp quyết định discovery trong bán kính 5–15 dặm.",
+      "San Diego có khoảng 3,3 triệu dân. Khách thường chọn tiệm gần nhà (trong vòng 15 km). Google và Yelp quyết định tiệm nào được thử.",
     competitors: [
       {
         name: "Salon độc lập — SD County",
@@ -185,37 +185,37 @@ export const consumerMarkets = [
     ],
     psychographics: [
       {
-        headline: "BBC California — kỳ vọng vệ sinh cao",
+        headline: "Tiêu chuẩn vệ sinh California (BBC)",
         detail:
-          "Khách CA quen tiêu chuẩn BBC (nhật ký pedicure, khử trùng) — salon tuân thủ tốt được coi là 'an toàn'; vi phạm lan truyền nhanh qua review.",
+          "Khách California quen tiệm phải sạch sẽ, có sổ ghi chép bồn ngâm chân. Tiệm làm tốt được coi là an toàn; tiệm bị phạt hoặc review xấu lan nhanh.",
         impact: "critical",
         sourceIds: ["ca-bbc-art12", "brightlocal-reviews-2024"],
       },
       {
-        headline: "Self-care định kỳ — mid-range là chuẩn",
+        headline: "Làm nail đều đặn — mức giá trung bình",
         detail:
-          "Manicure/pedicure 2–4 tuần/lần; GMI mid-range chiếm thị phần lớn. Gel grown-out tạo áp lực 'phải đi sớm' — không chỉ trước sự kiện.",
+          "Nhiều khách đi 2–4 tuần một lần. Gel móng dài ra khiến họ muốn đi sớm — không chỉ trước dịp lễ.",
         impact: "opportunity",
         sourceIds: ["gmi-nail-salon-2025", "blvd-salon-stats-2025"],
       },
       {
-        headline: "Premium hóa tại coastal · nhạy giá tại inland",
+        headline: "Giá cao ở ven biển, giá rẻ ở nội địa",
         detail:
-          "LA/SF/SD coastal: upsell signature pedicure, clean beauty. Inland/Central Valley: ưu tiên giá entry và walk-in nhanh.",
+          "LA, San Francisco, San Diego ven biển: khách chấp nhận trả nhiều cho dịch vụ spa. Vùng nội địa: ưu tiên giá rẻ và đi thẳng không cần đặt lịch.",
         impact: "insight",
         sourceIds: ["gmi-nail-salon-2025", "statista-nail-salons-us"],
       },
       {
-        headline: "Eco-conscious & ít VOC",
+        headline: "Quan tâm sản phẩm ít hóa chất",
         detail:
-          "WVE và xu hướng 'health-focused nails' — khách urban CA sẵn sàng trả premium cho không gian thông gió tốt, sản phẩm ít độc.",
+          "Khách thành phố California sẵn sàng trả thêm cho tiệm thông thoáng, dùng sản phẩm ít mùi và ít độc hại.",
         impact: "opportunity",
         sourceIds: ["wve-exposed-report", "gmi-nail-salon-2025"],
       },
       {
-        headline: "Trust qua rating online",
+        headline: "Tin vào sao đánh giá trên mạng",
         detail:
-          "~71% không cân nhắc salon dưới 3★ (BrightLocal). CA mật độ salon cao — Google/Yelp là bước lọc bắt buộc trước khi thử mới.",
+          "Khoảng 71% khách không chọn tiệm dưới 3 sao. California có rất nhiều tiệm — Google và Yelp là bước lọc đầu tiên.",
         impact: "critical",
         sourceIds: ["brightlocal-reviews-2024"],
       },
@@ -358,37 +358,37 @@ export const consumerMarkets = [
     ],
     psychographics: [
       {
-        headline: "Hyper-local discovery — bán kính 5–15 dặm",
+        headline: "Chọn tiệm gần nhà",
         detail:
-          "Khách SD so sánh salon trong khu trước khi lái xa; Google/Yelp filter khoảng cách quan trọng hơn brand quốc gia.",
+          "Khách San Diego so sánh tiệm trong khu trước khi lái xa. Google và Yelp lọc theo khoảng cách quan trọng hơn tên thương hiệu lớn.",
         impact: "critical",
         sourceIds: ["brightlocal-reviews-2024", "census-sd-county-2024"],
       },
       {
-        headline: "Vệ sinh BBC — deal-breaker tại East County",
+        headline: "Vệ sinh bồn ngâm chân — điều quyết định",
         detail:
-          "Review nhấn footspa sạch, không mùi mạnh. Khách sẵn sàng đổi salon trong cùng strip mall nếu thấy dụng cụ không sạch.",
+          "Review hay nhắc bồn ngâm chân sạch, không mùi nồng. Khách sẵn sàng đổi sang tiệm khác cùng khu nếu thấy dụng cụ không sạch.",
         impact: "critical",
         sourceIds: ["ca-bbc-art12", "brightlocal-reviews-2024", "wve-exposed-report"],
       },
       {
-        headline: "Gắn bó thợ — switching cost cảm xúc",
+        headline: "Gắn với thợ quen",
         detail:
-          "Nhiều lựa chọn SD nhưng khách quay lại cùng thợ khi hài lòng gel/độ bền — turnover thợ làm gián đoạn loyalty.",
+          "San Diego có nhiều tiệm nhưng khách hay quay lại cùng thợ khi hài lòng. Thợ nghỉ việc thường làm khách tìm tiệm khác.",
         impact: "high",
         sourceIds: ["gmi-nail-salon-2025", "blvd-salon-stats-2025"],
       },
       {
-        headline: "Salon gia đình — cuối tuần East County",
+        headline: "Tiệm cho cả gia đình — cuối tuần",
         detail:
-          "Phụ huynh Santee cần kid manicure, không gian sạch, ghế đủ cho cả hộ — 'salon an toàn cho con?' là rào cản tâm lý.",
+          "Phụ huynh ở Santee cần tiệm sạch, có dịch vụ cho trẻ. Câu hỏi thường gặp: \"Tiệm này an toàn cho con không?\"",
         impact: "insight",
         sourceIds: ["santee-city-demographics", "ca-bbc-art12"],
       },
       {
-        headline: "Chờ walk-in cuối tuần · booking online",
+        headline: "Chờ lâu cuối tuần · muốn đặt lịch trước",
         detail:
-          "Pain point suburb: thời gian chờ Chủ nhật. ~46–50% booking ngoài giờ — khách muốn kiểm soát lịch.",
+          "Cuối tuần ở vùng ngoại ô hay phải chờ. Khoảng một nửa khách đặt lịch ban đêm qua web hoặc app.",
         impact: "high",
         sourceIds: ["blvd-salon-stats-2025", "salon-today-retention"],
       },
@@ -487,5 +487,106 @@ export const consumerMarkets = [
         sourceIds: ["blvd-salon-stats-2025"],
       },
     ],
+  },
+];
+
+export const journeyCompare = [
+  {
+    num: 1,
+    icon: "💡",
+    title: "Cần làm nail",
+    subtitle: "Khi nào khách nghĩ đến tiệm?",
+    duration: "1–7 ngày",
+    color: "#1565C0",
+    bgColor: "rgba(21, 101, 192, 0.06)",
+    california:
+      "Khách hay đi khi có đám cưới, lễ, Tết, hoặc móng gel đã dài cần làm lại (thường 2–4 tuần một lần). Salon nên đăng ảnh mùa trên Facebook và Instagram.",
+    sanDiego:
+      "Tương tự California, nhưng nhiều khách ở vùng ngoại ô (East County) hay đi cả gia đình cuối tuần. Tiệm gần nhà được ưu tiên hơn tiệm xa.",
+    sourceIds: ["statista-consumer-csv-2023", "gmi-nail-salon-2025", "census-santee-2024"],
+  },
+  {
+    num: 2,
+    icon: "🔍",
+    title: "Tìm tiệm",
+    subtitle: "Khách so sánh salon thế nào?",
+    duration: "Vài phút – 2 ngày",
+    color: "#6A1B9A",
+    bgColor: "rgba(106, 27, 154, 0.06)",
+    california:
+      "Khách gõ Google \"nail salon near me\", xem sao đánh giá — dưới 3 sao thì bỏ qua. So giá trên web. Đọc review về sạch sẽ, bồn ngâm chân.",
+    sanDiego:
+      "Khách San Diego so khoảng cách rất kỹ — thường chọn tiệm trong bán kính 5–15 dặm. Yelp và Google quan trọng hơn tên thương hiệu lớn.",
+    sourceIds: ["brightlocal-reviews-2024", "statista-nail-salons-us"],
+  },
+  {
+    num: 3,
+    icon: "📅",
+    title: "Đặt lịch hoặc đi thẳng",
+    subtitle: "Khách vào tiệm thế nào?",
+    duration: "Ngay lập tức",
+    color: "#2E7D32",
+    bgColor: "rgba(46, 125, 50, 0.06)",
+    california:
+      "Khoảng một nửa khách đặt lịch qua web hoặc app ban đêm. Cuối tuần vẫn nhiều người đi thẳng và chấp nhận chờ.",
+    sanDiego:
+      "Chủ nhật ở vùng ngoại ô hay phải chờ lâu. Khách muốn đặt lịch trước qua điện thoại hoặc app để tránh chờ.",
+    sourceIds: ["blvd-salon-stats-2025", "salon-today-retention"],
+  },
+  {
+    num: 4,
+    icon: "💅",
+    title: "Trong tiệm",
+    subtitle: "Khách quan tâm điều gì?",
+    duration: "30–90 phút",
+    color: "#C0001E",
+    bgColor: "rgba(192, 0, 30, 0.06)",
+    california:
+      "Khách quan tâm thợ làm có khéo không, chỗ có sạch không (luật vệ sinh BBC của California). Salon có thể gợi ý thêm dịch vụ như sơn gel, paraffin.",
+    sanDiego:
+      "Khách hay quay lại cùng thợ nếu hài lòng. Mùi hóa chất và bồn ngâm chân không sạch là lý do bỏ tiệm ngay — kể cả tiệm cùng khu.",
+    sourceIds: ["ca-bbc-art12", "brightlocal-reviews-2024", "wve-exposed-report"],
+  },
+  {
+    num: 5,
+    icon: "💳",
+    title: "Trả tiền và tip",
+    subtitle: "Khách trả thế nào?",
+    duration: "5 phút",
+    color: "#E65100",
+    bgColor: "rgba(230, 81, 0, 0.06)",
+    california:
+      "Tip 15–25% là thông lệ tại Mỹ — phần thu nhập quan trọng của thợ. Thanh toán thẻ phổ biến; một số tiệm có gói tháng.",
+    sanDiego:
+      "Giống California: tip 15–25%, trả thẻ qua máy POS. Khách quân nhân và gia đình thường tip ổn định nếu hài lòng dịch vụ.",
+    sourceIds: ["ucla-nail-files-2024", "bls-manicurists"],
+  },
+  {
+    num: 6,
+    icon: "⭐",
+    title: "Đánh giá và kể lại",
+    subtitle: "Sau khi ra về",
+    duration: "1–48 giờ sau",
+    color: "#C9A535",
+    bgColor: "rgba(201, 165, 53, 0.1)",
+    california:
+      "Review trên Google và Yelp ảnh hưởng rất lớn vì cạnh tranh dày. Khách hài lòng hay đăng ảnh nail lên Instagram hoặc TikTok.",
+    sanDiego:
+      "Bạn bè, hàng xóm (đặc biệt ở Santee) hay giới thiệu tiệm uy tín. Review online vẫn quan trọng — ảnh thật quyết định thử tiệm mới.",
+    sourceIds: ["brightlocal-reviews-2024", "gmi-nail-salon-2025"],
+  },
+  {
+    num: 7,
+    icon: "🔄",
+    title: "Quay lại",
+    subtitle: "Khách có đến lần nữa không?",
+    duration: "2–4 tuần",
+    color: "#00695C",
+    bgColor: "rgba(0, 105, 92, 0.06)",
+    california:
+      "Salon nhắc lịch fill gel qua tin nhắn trước 2 tuần. Khách trung thành với thợ quen — đổi thợ thường làm mất khách.",
+    sanDiego:
+      "Gia đình quay lại tiệm sạch, có ghế cho trẻ. Quân nhân chuyển trú thì tìm tiệm mới qua Google — cần review cao và giá rõ ràng.",
+    sourceIds: ["salon-today-retention", "blvd-salon-stats-2025", "census-sd-county-2024"],
   },
 ];

@@ -1,4 +1,4 @@
-import { competitorMarkets, consumerMarkets } from "./regional-markets";
+import { competitorMarkets, consumerMarkets, journeyCompare } from "./regional-markets";
 
 export const sections = [
   { id: "overview", label: "Tổng quan" },
@@ -29,21 +29,25 @@ export const sectionIntros = {
   pestel: "Yếu tố vĩ mô ảnh hưởng toàn ngành nail salon tại Hoa Kỳ.",
   porter: "Năm lực lượng cạnh tranh trong ngành nail salon Mỹ.",
   competitors:
-    "Phân tích đối thủ riêng cho California (bang) và San Diego (thị trường địa phương) — mô hình, mức đe dọa và khác biệt vị trí địa lý.",
+    "So sánh từng loại đối thủ ở California và San Diego — cùng một hàng để dễ đối chiếu.",
   consumer:
-    "Chân dung khách dịch vụ nail theo từng thị trường: California và San Diego — mỗi thị trường có Demographic và Psychographic riêng.",
+    "Khách nail ở California và San Diego khác nhau thế nào — thông tin cơ bản, suy nghĩ, nhóm khách và cách họ tìm tiệm.",
   journey:
-    "Hành trình mua và sử dụng dịch vụ nail — từ kích hoạt nhu cầu đến tái mua, áp dụng cho khách CA/SD.",
+    "Khách đi từ lúc nghĩ đến làm nail đến lúc quay lại — so sánh California và San Diego từng bước.",
   strategy: "Đề xuất chiến lược cho nhà đầu tư, chuỗi và salon độc lập tại Mỹ.",
   valueChain: "Chuỗi giá trị ngành nail tại Hoa Kỳ",
 };
 
 export const consumerLabels = {
   marketHeading: "Thị trường",
-  demographicsTitle: "Demographic",
-  psychographicsTitle: "Psychographic",
-  segmentsTitle: "Customer Segmentation",
-  infoSourcesTitle: "Nguồn thông tin khi chọn salon",
+  demographicsTitle: "Khách hàng là ai?",
+  psychographicsTitle: "Khách nghĩ & lo lắng gì?",
+  segmentsTitle: "Nhóm khách hàng chính",
+  infoSourcesTitle: "Khách tìm tiệm nail ở đâu?",
+  segmentProfile: "Chi tiết",
+  segmentMindset: "Suy nghĩ & lo lắng",
+  segmentChannel: "Tìm tiệm qua",
+  segmentBarrier: "Điều khiến họ không đến",
 };
 
 export const valueChain = [
@@ -288,7 +292,7 @@ export const porterData = [
   },
 ];
 
-export { competitorMarkets, consumerMarkets };
+export { competitorMarkets, consumerMarkets, journeyCompare } from "./regional-markets";
 
 export const journeyStages = [
   {
