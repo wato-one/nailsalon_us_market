@@ -311,7 +311,8 @@ export const competitorsCompareRows = [
       type: "Độc lập · khu mua sắm & plaza",
       rating: "4,0–5 sao · đa dạng",
       threat: 5,
-      strengths: "Nhiều tiệm mỗi khu; thợ quen khách; giá USD 25–55; cuối tuần East County đông.",
+      strengths:
+        "Nhiều tiệm mỗi khu (vd. Santee: LK, Sunny, Polish, La Vie); thợ quen khách; giá USD 25–55; cuối tuần East County đông.",
       weaknesses: "Chờ lâu cuối tuần; thợ nghỉ việc; đặt lịch online không đều.",
       sourceIds: ["census-sd-county-2024", "brightlocal-reviews-2024", "gmi-nail-salon-2025"],
     },

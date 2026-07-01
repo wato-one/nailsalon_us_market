@@ -30,7 +30,7 @@ export const sectionIntros = {
   pestel: "Yếu tố vĩ mô ảnh hưởng toàn ngành nail salon tại Hoa Kỳ.",
   porter: "Năm lực lượng cạnh tranh trong ngành nail salon Mỹ.",
   competitors:
-    "So sánh từng loại đối thủ ở California và San Diego — cùng một hàng để dễ đối chiếu.",
+    "So sánh từng loại đối thủ ở California và San Diego — cùng một hàng để dễ đối chiếu. Phía dưới: ví dụ tiệm cụ thể tại East County (Santee).",
   consumer:
     "Khách nail ở California và San Diego khác nhau thế nào — thông tin cơ bản, suy nghĩ, nhóm khách và cách họ tìm tiệm.",
   journey:
@@ -295,7 +295,13 @@ export const porterData = [
   },
 ];
 
-export { competitorMarkets, consumerMarkets, journeyCompare } from "./regional-markets";
+export {
+  competitorMarkets,
+  consumerMarkets,
+  journeyCompare,
+  eastCountyCompetitorsIntro,
+  eastCountyNamedCompetitors,
+} from "./regional-markets";
 
 export {
   demographicsCompareRows,

@@ -76,7 +76,7 @@ export const competitorMarkets = [
         rating: "4,0–5★ Yelp/Google · đa dạng",
         threat: 5,
         strengths:
-          "Mật độ cao mỗi khu; thợ quen khách; giá mid-range USD 25–55; walk-in cuối tuần mạnh tại East County.",
+          "Mật độ cao mỗi khu (vd. Santee: LK, Sunny, Polish, La Vie); thợ quen khách; giá mid-range USD 25–55; walk-in cuối tuần mạnh tại East County.",
         weaknesses:
           "Chờ lâu cuối tuần; turnover thợ; booking online không đồng đều.",
         sourceIds: ["census-sd-county-2024", "brightlocal-reviews-2024", "gmi-nail-salon-2025"],
@@ -126,6 +126,54 @@ export const competitorMarkets = [
         sourceIds: ["gmi-nail-salon-2025", "statista-consumer-csv-2023"],
       },
     ],
+  },
+];
+
+/** East County (Santee) — named local competitors; Yelp/Google crawl 06/2026 */
+export const eastCountyCompetitorsIntro =
+  "East County (Santee) — tiệm cụ thể trong cụm strip mall. Khách thường so Yelp rating và số review trước khi chọn tiệm (BrightLocal: 71% bỏ qua dưới 3★).";
+
+export const eastCountyNamedCompetitors = [
+  {
+    name: "LK Nail Salon",
+    type: "Độc lập · Woodside Ave",
+    rating: "5,0★ Google (276) · 4,5★ Yelp (80)",
+    threat: 0,
+    strengths:
+      "Discovery mạnh trên Google; nail art & spa pedicure được nhắc trên Yelp; menu premium 24K/Volcano; đồ uống miễn phí & kid services; booking NailSoft.",
+    weaknesses:
+      "Yelp volume thấp hơn Sunny (523) và Polish (660); review gần đây phàn nàn rush cuối tuần & appointment bị walk-in chen.",
+    sourceIds: ["google-lk-santee", "yelp-lk-santee", "lk-company-site", "census-santee-2024"],
+  },
+  {
+    name: "Sunny Nails & Spa",
+    type: "Độc lập · Santee",
+    rating: "4,7★ Yelp (523)",
+    threat: 4,
+    strengths:
+      "Rating Yelp cao nhất cụm Santee; 523 review — volume lớn hơn LK 6× trên Yelp; giá hợp lý, gel pedicure được khen.",
+    weaknesses: "Không cùng cluster Woodside; ít menu premium 24K/Volcano như LK.",
+    sourceIds: ["yelp-sunny-santee", "sunny-nails-santee", "census-santee-2024"],
+  },
+  {
+    name: "Polish Nails Spa LLC",
+    type: "Độc lập · Santee",
+    rating: "4,5★ Yelp (660)",
+    threat: 4,
+    strengths:
+      "660 review Yelp — volume lớn nhất cụm; positioning pampering; thợ được khen về chi tiết.",
+    weaknesses: "Rating Yelp ngang LK nhưng review count cao hơn 8× — social proof mạnh hơn trên Yelp.",
+    sourceIds: ["yelp-polish-santee", "polish-nails-santee", "census-santee-2024"],
+  },
+  {
+    name: "La Vie Nails & Spa",
+    type: "Độc lập · Santee",
+    rating: "4,0★ Yelp (106)",
+    threat: 4,
+    strengths:
+      "Loyalty theo thợ (Kate, Elaine, Chau); dip gel bền (review); không gian sạch, thư giãn.",
+    weaknesses: "Yelp thấp hơn LK Google; dip powder đôi khi chip sớm theo review.",
+    sourceIds: ["lavie-nails-santee", "census-santee-2024"],
   },
 ];
 

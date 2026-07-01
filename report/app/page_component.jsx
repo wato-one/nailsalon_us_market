@@ -13,6 +13,8 @@ import {
   pestelData,
   porterData,
   competitorMarkets,
+  eastCountyCompetitorsIntro,
+  eastCountyNamedCompetitors,
   demographicsCompareRows,
   psychographicsCompareRows,
   segmentsCompareRows,
@@ -760,6 +762,30 @@ export default function App() {
               right={<CompetitorCard rowLabel={row.rowLabel} data={row.sanDiego} />}
             />
           ))}
+
+          <div style={{ marginTop: "32px", marginBottom: "16px" }}>
+            <h3 style={{ fontFamily: theme.fonts.display, fontSize: "20px", margin: "0 0 8px" }}>
+              East County / Santee — tiệm cụ thể
+            </h3>
+            <p style={{ color: theme.colors.muted, margin: 0, fontSize: "13px", lineHeight: 1.6 }}>
+              {eastCountyCompetitorsIntro}
+            </p>
+          </div>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+              gap: "16px",
+            }}
+          >
+            {eastCountyNamedCompetitors.map((competitor) => (
+              <CompetitorCard
+                key={competitor.name}
+                rowLabel={competitor.type}
+                data={competitor}
+              />
+            ))}
+          </div>
         </section>
 
         <section id="consumer" style={sectionStyle}>
